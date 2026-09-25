@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/kyverno/chainsaw/main/.schemas/json/test-chainsaw-v1alpha1.json
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: validate-global-context-crd
+spec:
+  concurrent: false
+  steps:
+    - name: step-01
+      try:
+        - apply:
+            file: valid-context.yaml
+        - assert:
+            file: valid-context-assert.yaml
+    - name: step-02
+      try:
+        - apply:
+            file: multiple-resources.yaml
+            expect:
+              - check:
+                  ($error): |-
+                    GlobalContextEntry.kyverno.io "ingress-2" is invalid: <nil>: Invalid value: "": "spec" must validate one and only one schema (oneOf). Found 2 valid alternatives
+    - name: step-03
+      try:
+        - apply:
+            file: no-resource.yaml
+            expect:
+              - check:
+                  ($error): |-
+                    GlobalContextEntry.kyverno.io "ingress-3" is invalid: [<nil>: Invalid value: "": "spec" must validate one and only one schema (oneOf). Found none valid, spec.kubernetesResource: Required value]

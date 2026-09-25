@@ -1,0 +1,27 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: priv
+spec:
+  background: true
+  rules:
+    - name: priv-esc
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        failureAction: Enforce
+        message: >-
+          Lorem ipse
+        pattern:
+          spec:
+            =(initContainers):
+              - (image): "!*/foo:*.*.*"
+                securityContext:
+                  allowPrivilegeEscalation: "false"
+            =(containers):
+              - (image): "!*/foo:*.*.*"
+                securityContext:
+                  allowPrivilegeEscalation: "false"
