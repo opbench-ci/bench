@@ -1,0 +1,34 @@
+[
+ {
+  "worker": 0,
+  "sets": {
+   "B1-standard": 178,
+   "B3-force-failure-policy-ignore": 5,
+   "B4-generate-map": 6,
+   "B5-map-reports": 3,
+   "B2-default": 1
+  },
+  "predicted_s": 449.3
+ },
+ {
+  "worker": 1,
+  "sets": {
+   "B1-standard": 214
+  },
+  "predicted_s": 449.3
+ },
+ {
+  "worker": 2,
+  "sets": {
+   "B1-standard": 216
+  },
+  "predicted_s": 449.4
+ },
+ {
+  "worker": 3,
+  "sets": {
+   "B1-standard": 216
+  },
+  "predicted_s": 449.4
+ }
+]
