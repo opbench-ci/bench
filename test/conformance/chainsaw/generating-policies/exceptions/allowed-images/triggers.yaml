@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: good-resource
+  namespace: exceptions-allowed-images
+spec:
+  containers:
+  - name: container01
+    image: public.ecr.aws/docker/library/nginx:latest
+    securityContext:
+      allowPrivilegeEscalation: true
+  - name: container02
+    image: public.ecr.aws/docker/library/ubuntu:latest
+    securityContext:
+      allowPrivilegeEscalation: false
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bad-resource
+  namespace: exceptions-allowed-images
+spec:
+  containers:
+  - name: container01
+    image: public.ecr.aws/docker/library/ubuntu:latest
+    securityContext:
+      allowPrivilegeEscalation: true
