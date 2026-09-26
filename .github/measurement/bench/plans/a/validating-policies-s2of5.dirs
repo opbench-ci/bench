@@ -1,0 +1,11 @@
+validating-policies/exceptions/empty-policy-ref
+validating-policies/exceptions/exclude-deployments
+validating-policies/exceptions/exclude-images
+validating-policies/exceptions/exclude-images-autogen
+validating-policies/exceptions/exclude-images-multiple-cel
+validating-policies/exceptions/regular
+validating-policies/exceptions/wrong-exception
+validating-policies/match-conditions/cel-libs
+validating-policies/match-conditions/failure-policy/default
+validating-policies/match-conditions/failure-policy/fail
+validating-policies/match-conditions/failure-policy/ignore
