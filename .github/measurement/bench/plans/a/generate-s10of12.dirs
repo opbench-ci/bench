@@ -1,0 +1,15 @@
+generate/policy/standard/data/sync/pol-data-sync-delete-rule
+generate/policy/standard/data/sync/pol-data-sync-delete-rule-deprecated
+generate/policy/standard/data/sync/pol-data-sync-delete-trigger
+generate/policy/standard/data/sync/pol-data-sync-modify-downstream
+generate/policy/standard/data/sync/pol-data-sync-modify-rule
+generate/policy/standard/data/sync/pol-data-sync-modify-rule-deprecated
+generate/policy/standard/data/sync/pol-data-sync-update-trigger-no-match
+generate/policy/standard/existing/match-trigger-namespace
+generate/policy/standard/existing/match-trigger-namespace-deprecated
+generate/policy/standard/existing/non-match-trigger-namespace
+generate/policy/standard/existing/non-match-trigger-namespace-deprecated
+generate/validation/clusterpolicy/cloneList
+generate/validation/clusterpolicy/immutable-rule-spec
+generate/validation/clusterpolicy/orphan
+generate/validation/clusterpolicy/permissions/no-permission

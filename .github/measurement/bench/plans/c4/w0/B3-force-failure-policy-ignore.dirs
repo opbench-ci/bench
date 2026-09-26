@@ -1,0 +1,5 @@
+force-failure-policy-ignore/cluster-policy/fail
+force-failure-policy-ignore/cluster-policy/fail-deprecated
+force-failure-policy-ignore/image-validating-policy/fail
+force-failure-policy-ignore/mutating-policy/fail
+force-failure-policy-ignore/validating-policy/fail
