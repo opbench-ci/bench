@@ -1,0 +1,6 @@
+image-validating-policies/autogen/none
+image-validating-policies/autogen/should-autogen
+image-validating-policies/autogen/should-not-autogen
+image-validating-policies/context/configmap
+image-validating-policies/context/globalreference
+image-validating-policies/context/imagedata/imagereference
