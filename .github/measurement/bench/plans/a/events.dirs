@@ -1,0 +1,11 @@
+events/clusterpolicy/generate-events-upon-fail-generation
+events/clusterpolicy/generate-events-upon-successful-generation
+events/clusterpolicy/generate-events-upon-successful-mutation
+events/clusterpolicy/message-exceeds-1024-characters
+events/clusterpolicy/no-events-upon-skip-generation
+events/clusterpolicy/success-event-actions
+events/mutating-policy/generate-events-upon-successful-mutation
+events/policy/policy-applied
+events/policy/policy-applied-deprecated
+events/policy/policy-violation
+events/policy/policy-violation-deprecated
