@@ -1,0 +1,216 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: "ci-bench-a: upstream kind arm, equal work"
+
+# Arm A: rebuilt from the proven kind-arm workflow (5/5 hosted runs green on
+# the 695-directory timing population before this protocol froze), restricted
+# here to the frozen manifest's 839 included directories, one fresh kind
+# cluster per upstream shard: hack/p82-kind/up.sh (CI_SHAPED=1) brings the
+# cluster up and installs Kyverno from the bundle's pinned SUT image;
+# bin/p82-kind-sweep -ci-shard/-ci-dirs-file runs exactly that shard's
+# included directories through one chainsaw invocation (--fail-fast=false,
+# D2); down.sh tears the cluster down. kind v0.32.0 / kindest/node:v1.35.5,
+# chainsaw v0.2.15 (D1). No image-build job (D9): up.sh loads the bundle's own
+# pinned SUT image, same as every other arm.
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [bench/a-cold, bench/a-warm]
+  workflow_dispatch: {}
+
+concurrency:
+  group: ci-bench-hosted
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    name: kind ${{ matrix.id }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {id: assert, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: autogen, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: background-only, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: deferred, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: events, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: exceptions-s0of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: exceptions-s1of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: exceptions-s2of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: filter, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: force-failure-policy-ignore, configs: 'standard,force-failure-policy-ignore', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: generate-s0of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s1of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s2of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s3of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s4of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s5of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s6of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s7of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s8of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s9of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s10of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-s11of12, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generate-mutating-admission-policy, configs: 'standard,generate-mutating-admission-policy', kind_config: './scripts/config/kind/vap-v1beta1.yaml', evict: '0'}
+          - {id: generate-validating-admission-policy, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: generating-policies-s0of6, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generating-policies-s1of6, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generating-policies-s2of6, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generating-policies-s3of6, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generating-policies-s4of6, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: generating-policies-s5of6, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '1'}
+          - {id: globalcontext, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: image-validating-policies-s0of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: image-validating-policies-s1of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: image-validating-policies-s2of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: mutate-s0of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: mutate-s1of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: mutate-s2of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: mutating-admission-policy-reports, configs: 'standard,mutating-admission-policy-reports', kind_config: './scripts/config/kind/vap-v1beta1.yaml', evict: '0'}
+          - {id: mutating-policies-s0of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: mutating-policies-s1of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: mutating-policies-s2of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: namespaced-generating-policies-s1of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: namespaced-generating-policies-s2of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: namespaced-image-validating-policies, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: namespaced-mutating-policies, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: namespaced-validating-policies-s0of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: namespaced-validating-policies-s1of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: namespaced-validating-policies-s2of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: policy-exceptions-disabled, configs: 'default', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: policy-validation, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: rangeoperators, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: rbac-standard, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: reports-s0of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: reports-s1of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: reports-s2of3, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validate-s0of8, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validate-s1of8, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validate-s2of8, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validate-s3of8, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validate-s4of8, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validate-s5of8, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validate-s6of8, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validate-s7of8, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validating-admission-policy-reports, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validating-policies-s0of5, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validating-policies-s1of5, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validating-policies-s2of5, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validating-policies-s3of5, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: validating-policies-s4of5, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: verify-manifests, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: webhook-configurations, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+          - {id: webhooks, configs: 'standard', kind_config: './scripts/config/kind/default.yaml', evict: '0'}
+    env:
+      BUNDLE_URL: ${{ vars.BUNDLE_URL }}
+      BUNDLE_SHA256: ${{ vars.BUNDLE_SHA256 }}
+      BUNDLE: ${{ github.workspace }}/bundle
+      EVIDENCE: ${{ github.workspace }}/evidence
+      BENCH_JOB: ${{ matrix.id }}
+      # Same pin as hack/p82-kind/up.sh's own NODE_IMAGE default.
+      NODE_IMAGE: kindest/node:v1.35.5@sha256:ce977ae6d65918d0b58a5f8b5e940429c2ce42fa3a5619ec2bbc60b949c0ac95
+    steps:
+      - name: Mark job start
+        run: echo "JOB_T0=$(date +%s%N)" >> "$GITHUB_ENV"
+      - name: Checkout (this tree carries the pinned upstream test sources)
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # The helpers' screen refuses any checkout whose HEAD is not the pin, and
+      # this tree's HEAD is a parentless benchmark commit: tests, configs and
+      # the screen all read this untouched upstream checkout instead.
+      - name: Checkout exact upstream test sources
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: kyverno/kyverno
+          ref: 945ac9ce8546ea6cd51370f24b615148c577da5e
+          path: upstream
+      - name: Start evidence and host telemetry
+        run: |
+          mkdir -p "$EVIDENCE"
+          echo "{\"phase\":\"job_steps_start\",\"unix_ns\":$JOB_T0}" >> "$EVIDENCE/phases.jsonl"
+          lscpu -J > "$EVIDENCE/lscpu.json"
+      - uses: ./.github/actions/measurement/capture-runner
+      - name: Install tools (upstream actions)
+        uses: ./.github/actions/tools/install
+        with:
+          helm: true
+          cosign: true
+          yq: true
+      - name: Install chainsaw v0.2.15
+        uses: kyverno/action-install-chainsaw@06560d18422209e9c1e08e931d477d04bf2674c1 # v0.2.14
+        with:
+          verify: true
+          release: v0.2.15
+      - name: Download and verify public binary bundle
+        run: |
+          set -euo pipefail
+          .github/measurement/bench/phase.sh bundle_download bash -c '
+            curl --fail --location --retry 3 --silent --show-error "$BUNDLE_URL" -o "$RUNNER_TEMP/bundle.tar.gz" &&
+            echo "$BUNDLE_SHA256  $RUNNER_TEMP/bundle.tar.gz" | sha256sum -c - &&
+            mkdir -p "$BUNDLE" && tar xzf "$RUNNER_TEMP/bundle.tar.gz" -C "$BUNDLE" &&
+            (cd "$BUNDLE" && sha256sum --quiet -c SHA256SUMS)'
+          cp "$RUNNER_TEMP/runner-profile.json" "$BUNDLE/provenance.json" "$EVIDENCE/" 2>/dev/null || true
+      - name: Install kind v0.32.0
+        run: |
+          set -euo pipefail
+          .github/measurement/bench/phase.sh kind_install bash -c '
+            curl --fail --location --retry 3 --silent --show-error -o "$RUNNER_TEMP/kind" https://kind.sigs.k8s.io/dl/v0.32.0/kind-linux-amd64 &&
+            curl --fail --location --retry 3 --silent --show-error https://kind.sigs.k8s.io/dl/v0.32.0/kind-linux-amd64.sha256sum | sed "s|kind-linux-amd64|$RUNNER_TEMP/kind|" | sha256sum -c - &&
+            sudo install -m 0755 "$RUNNER_TEMP/kind" /usr/local/bin/kind'
+          kind version >> "$EVIDENCE/tool-versions.txt"
+      # Warm only: restore the kind node image tarball keyed on its pinned
+      # digest, so a warm run skips re-pulling ~700 MiB per job. Cold runs
+      # never touch actions/cache.
+      - name: Restore kind node image (warm)
+        if: endsWith(github.ref_name, '-warm')
+        id: node-image-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ${{ runner.temp }}/kindest-node.tar
+          key: kindest-node-v1.35.5-ce977ae6
+      - name: Load kind node image from cache (warm hit)
+        if: endsWith(github.ref_name, '-warm') && steps.node-image-cache.outputs.cache-hit == 'true'
+        run: docker load -i "${{ runner.temp }}/kindest-node.tar"
+      - name: Bring up kind and install Kyverno (CI-shaped)
+        run: |
+          set -euo pipefail
+          CI_SHAPED=1 CONTROLLERS=all KYVERNO_ROOT="$GITHUB_WORKSPACE/upstream" \
+          P82_SUT_DIR="$BUNDLE/artifacts/sut/kyverno-admission" NODE_IMAGE="$NODE_IMAGE" \
+          KYVERNO_CONFIGS='${{ matrix.configs }}' KIND_CONFIG='${{ matrix.kind_config }}' \
+          INSTALL_KUBECTL_EVICT='${{ matrix.evict }}' INSTALL_OPENREPORTS=0 \
+            .github/measurement/bench/phase.sh cluster_up bash -c \
+            '"$BUNDLE/hack/p82-kind/up.sh" kind "$RUNNER_TEMP/kubeconfig" > "$EVIDENCE/up.json" 2> "$EVIDENCE/up.log"'
+          cat "$EVIDENCE/up.json"
+          KUBECONFIG="$RUNNER_TEMP/kubeconfig" kubectl version -o json > "$EVIDENCE/kubernetes-version.json"
+          # up.sh installs kubectl-evict (D4) into $HOME/go/bin; later steps
+          # (chainsaw's `kubectl evict`) only find it if that dir is on PATH.
+          echo "$HOME/go/bin" >> "$GITHUB_PATH"
+      # Warm only, first run (cache miss): save the now-local node image so the
+      # next warm run on a matching key can load instead of pull.
+      - name: Save kind node image tarball (warm, first run)
+        if: endsWith(github.ref_name, '-warm') && steps.node-image-cache.outputs.cache-hit != 'true'
+        run: docker save "$NODE_IMAGE" -o "${{ runner.temp }}/kindest-node.tar"
+      - name: Run the shard's included directories
+        working-directory: bundle
+        run: |
+          set -euo pipefail
+          "$GITHUB_WORKSPACE/.github/measurement/bench/phase.sh" chainsaw_shard \
+            ./bin/p82-kind-sweep -kyverno "$GITHUB_WORKSPACE/upstream" -kubeconfig "$RUNNER_TEMP/kubeconfig" \
+            -controllers all -upstream-ci -no-fail-fast \
+            -from docs/p82/kyverno-final-2026-09-18-c1-r1.jsonl -ci-manifest docs/p82/ci-shards-2026-09-19.json \
+            -ci-shard '${{ matrix.id }}' -ci-dirs-file "$GITHUB_WORKSPACE/.github/measurement/bench/plans/a/${{ matrix.id }}.dirs" \
+            -ci-setup-json "$EVIDENCE/up.json" -out "$EVIDENCE/result.jsonl" 2> "$EVIDENCE/sweep.log"
+      - name: Delete kind cluster
+        if: always()
+        run: .github/measurement/bench/phase.sh cluster_down "$BUNDLE/hack/p82-kind/down.sh" kind || true
+      - name: Collect evidence
+        if: always()
+        run: |
+          echo "{\"phase\":\"job_steps_end\",\"unix_ns\":$(date +%s%N)}" >> "$EVIDENCE/phases.jsonl"
+          "$GITHUB_WORKSPACE/.github/measurement/bench/emit-evidence.sh"
+      - name: Emit cache evidence (warm)
+        if: always() && endsWith(github.ref_name, '-warm')
+        run: |
+          echo "BENCH-EVIDENCE cache {\"arm\":\"a\",\"key\":\"kindest-node-v1.35.5-ce977ae6\",\"hit\":${{ steps.node-image-cache.outputs.cache-hit == 'true' }},\"reason\":\"actions/cache keyed on the kindest/node:v1.35.5 image digest; no harness-level cache is involved for kind\"}"
