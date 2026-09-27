@@ -1,0 +1,15 @@
+generate/clusterpolicy/cornercases/clone-list-sync-same-trigger-source-delete-source
+generate/clusterpolicy/cornercases/clone-list-sync-same-trigger-source-update-source
+generate/clusterpolicy/cornercases/clone-role-and-rolebinding
+generate/clusterpolicy/cornercases/clone-source-managed-by-label-helm
+generate/clusterpolicy/cornercases/clone-source-name-exceeds-63-characters
+generate/clusterpolicy/cornercases/clone-sync-same-trigger-source-delete-source
+generate/clusterpolicy/cornercases/clone-sync-same-trigger-source-update-source
+generate/clusterpolicy/cornercases/cpol-clone-create-on-trigger-deletion
+generate/clusterpolicy/cornercases/cpol-clone-delete-ownerreferences-across-namespaces
+generate/clusterpolicy/cornercases/cpol-clone-delete-ownerreferences-across-namespaces-deprecated
+generate/clusterpolicy/cornercases/cpol-clone-sync-create-source-after-policy
+generate/clusterpolicy/cornercases/cpol-clone-sync-reinstall-policy
+generate/clusterpolicy/cornercases/cpol-clone-sync-reinstall-policy-deprecated
+generate/clusterpolicy/cornercases/cpol-clone-sync-single-source-multiple-triggers-targets
+generate/clusterpolicy/cornercases/cpol-clone-sync-single-source-multiple-triggers-targets-deprecated
