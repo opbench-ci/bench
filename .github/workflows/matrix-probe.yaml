@@ -1,0 +1,87 @@
+name: matrix-probe
+
+# One run = the full job matrix, each job on its own hosted runner. The job
+# driver comes from the release bundle named by the repository variables;
+# this tree carries only this file and the results recipient.
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [probe/matrix]
+
+concurrency:
+  group: matrix-probe
+  cancel-in-progress: false
+
+jobs:
+  cell:
+    name: ${{ matrix.s }} ${{ matrix.c }} ${{ matrix.k }} ${{ matrix.a }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {s: vm, c: rmq782, k: O, a: primary}
+          - {s: vm, c: rmq648, k: O, a: primary}
+          - {s: vm, c: zk410, k: O, a: primary}
+          - {s: vm, c: rmq782, k: K, a: primary}
+          - {s: vm, c: zk410, k: K, a: primary}
+          - {s: vm, c: rmq782, k: R, a: primary}
+          - {s: vm, c: zk410, k: R, a: primary}
+          - {s: vm, c: rmq782, k: K, a: x}
+          - {s: vm, c: zk410, k: K, a: x}
+          - {s: kind, c: rmq782, k: O, a: primary}
+          - {s: kind, c: rmq648, k: O, a: primary}
+          - {s: kind, c: zk410, k: O, a: primary}
+          - {s: kind, c: rmq782, k: K, a: primary}
+          - {s: kind, c: zk410, k: K, a: primary}
+          - {s: kind, c: rmq782, k: R, a: primary}
+          - {s: kind, c: zk410, k: R, a: primary}
+    env:
+      BUNDLE_URL: ${{ vars.MP_BUNDLE_URL }}
+      BUNDLE_SHA256: ${{ vars.MP_BUNDLE_SHA256 }}
+      BUNDLE: ${{ github.workspace }}/bundle
+      EVIDENCE: ${{ github.workspace }}/evidence
+      RESULTS_RECIPIENT_FILE: ${{ github.workspace }}/.probe/recipient.txt
+    steps:
+      - name: Mark start
+        run: echo "MP-PHASE {\"phase\":\"steps_start\",\"unix_ns\":$(date +%s%N)}"
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Enable KVM
+        if: matrix.s == 'vm'
+        run: |
+          sudo chmod 0666 /dev/kvm
+          test -r /dev/kvm && test -w /dev/kvm
+          grep -Eq '(vmx|svm)' /proc/cpuinfo
+      - name: Reserve 2M pages and mount hugetlbfs
+        if: matrix.s == 'vm'
+        run: |
+          # One clone at a time: the staged base and baseline snapshot copies
+          # (2 GiB guest each, at most) plus one running clone's private
+          # pages (2 GiB), and headroom: 3200 x 2 MiB = 6.25 GiB.
+          echo 3200 | sudo tee /proc/sys/vm/nr_hugepages
+          sudo mkdir -p /mnt/huge && sudo mount -t hugetlbfs -o mode=1777,pagesize=2M none /mnt/huge
+          grep -i hugepages_ /proc/meminfo
+          test "$(cat /proc/sys/vm/nr_hugepages)" -ge 3200
+          echo "HARNESS_HUGETLBFS_DIR=/mnt/huge" >> "$GITHUB_ENV"
+      - name: Install tools
+        run: |
+          for i in 1 2 3 4 5; do
+            sudo apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq stress-ng age zstd && break
+            sleep $((i * 20))
+          done
+          command -v stress-ng && command -v age && command -v zstd
+      - name: Download and verify bundle
+        run: |
+          set -euo pipefail
+          echo "MP-PHASE {\"phase\":\"bundle_start\",\"unix_ns\":$(date +%s%N)}"
+          curl --fail --location --retry 5 --retry-all-errors --silent --show-error "$BUNDLE_URL" -o "$RUNNER_TEMP/b.tar.gz"
+          echo "$BUNDLE_SHA256  $RUNNER_TEMP/b.tar.gz" | sha256sum -c -
+          mkdir -p "$BUNDLE" && tar xzf "$RUNNER_TEMP/b.tar.gz" -C "$BUNDLE" && rm "$RUNNER_TEMP/b.tar.gz"
+          (cd "$BUNDLE" && sha256sum --quiet -c SHA256SUMS)
+          echo "MP-PHASE {\"phase\":\"bundle_end\",\"unix_ns\":$(date +%s%N)}"
+      - name: Run
+        run: '"$BUNDLE/job.sh" "${{ matrix.s }}" "${{ matrix.c }}" "${{ matrix.k }}" "${{ matrix.a }}"'
