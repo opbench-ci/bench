@@ -1,0 +1,166 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: "ci-bench-c: salvage demo, 2 workers x concurrency 2"
+
+# Salvage demo: a 2-job C-shaped run where one job's timeout-minutes is
+# short enough to be cancelled after some directories complete, to check
+# whether the job log's BENCH-EVIDENCE lines for those completed
+# directories are still recoverable from a cancelled job.
+#
+# Arm C: 8 workers x 2 concurrent clones,
+# LPT-balanced by prior per-directory time (.github/measurement/bench/plans/c/),
+# one isolated guest clone restored per directory (no shared cluster, D6), one
+# chainsaw process per directory (its own startup counted, no batching).
+# Non-primary baselines (force-failure-policy-ignore, generate/mutating-
+# admission-policy variants) are packed on worker 0 so no other worker pays
+# more than one baseline build.
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [bench/c-cold, bench/c-warm]
+  workflow_dispatch: {}
+
+concurrency:
+  group: ci-bench-hosted
+  cancel-in-progress: false
+
+jobs:
+  worker:
+    name: c w${{ matrix.worker }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: ${{ matrix.worker == 1 && 4 || 45 }}
+    strategy:
+      fail-fast: false
+      matrix:
+        worker: [0, 1]
+    env:
+      BUNDLE_URL: ${{ vars.BUNDLE_URL }}
+      BUNDLE_SHA256: ${{ vars.BUNDLE_SHA256 }}
+      BUNDLE: ${{ github.workspace }}/bundle
+      EVIDENCE: ${{ github.workspace }}/evidence
+      BENCH_JOB: w${{ matrix.worker }}
+      HARNESS_ARTIFACT_DIR: /tmp/gh
+      HARNESS_SNAPSHOT_CACHE: /tmp/gh-snapshots
+      HARNESS_HUGETLBFS_DIR: /mnt/huge
+    steps:
+      - name: Mark job start
+        run: echo "JOB_T0=$(date +%s%N)" >> "$GITHUB_ENV"
+      - name: Checkout (this tree carries the pinned upstream test sources)
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # The helpers' screen refuses any checkout whose HEAD is not the pin, and
+      # this tree's HEAD is a parentless benchmark commit: tests, configs and
+      # the screen all read this untouched upstream checkout instead.
+      - name: Checkout exact upstream test sources
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: kyverno/kyverno
+          ref: 945ac9ce8546ea6cd51370f24b615148c577da5e
+          path: upstream
+      - name: Enable KVM
+        run: |
+          sudo chmod 0666 /dev/kvm
+          test -r /dev/kvm && test -w /dev/kvm
+          grep -Eq '(vmx|svm)' /proc/cpuinfo
+      - name: Reserve 2M pages and mount hugetlbfs (D7, incl. the baseline builder)
+        run: |
+          # One 4 GiB staged snapshot copy + a running clone's private pages + 4 GiB free
+          # for the second concurrent restore (the harness pool check per restore).
+          echo 6200 | sudo tee /proc/sys/vm/nr_hugepages
+          sudo mkdir -p /mnt/huge && sudo mount -t hugetlbfs -o mode=1777,pagesize=2M none /mnt/huge
+          grep -i hugepages_ /proc/meminfo
+      - name: Start evidence and host telemetry
+        run: |
+          mkdir -p "$EVIDENCE"
+          echo "{\"phase\":\"job_steps_start\",\"unix_ns\":$JOB_T0}" >> "$EVIDENCE/phases.jsonl"
+          lscpu -J > "$EVIDENCE/lscpu.json"
+          nohup vmstat -n -t 5 > "$EVIDENCE/vmstat.txt" 2>&1 &
+      - uses: ./.github/actions/measurement/capture-runner
+      - name: Install tools (upstream actions)
+        uses: ./.github/actions/tools/install
+        with:
+          helm: true
+          cosign: true
+          yq: true
+      - name: Install chainsaw v0.2.15
+        uses: ./.github/actions/tools/chainsaw
+      - name: Download and verify public binary bundle
+        run: |
+          set -euo pipefail
+          .github/measurement/bench/phase.sh bundle_download bash -c '
+            curl --fail --location --retry 3 --silent --show-error "$BUNDLE_URL" -o "$RUNNER_TEMP/bundle.tar.gz" &&
+            echo "$BUNDLE_SHA256  $RUNNER_TEMP/bundle.tar.gz" | sha256sum -c - &&
+            mkdir -p "$BUNDLE" && tar xzf "$RUNNER_TEMP/bundle.tar.gz" -C "$BUNDLE" &&
+            (cd "$BUNDLE" && sha256sum --quiet -c SHA256SUMS)'
+          cp "$RUNNER_TEMP/runner-profile.json" "$BUNDLE/provenance.json" "$EVIDENCE/" 2>/dev/null || true
+      - name: Install kubectl-evict (D4, once per worker, pinned; the generate/generating-policies sets need it)
+        run: |
+          set -euo pipefail
+          .github/measurement/bench/phase.sh evict_install bash -c 'GOBIN="$HOME/go/bin" go install github.com/ueokande/kubectl-evict@latest'
+          echo "$HOME/go/bin" >> "$GITHUB_PATH"
+      # Warm only: restore this worker's harness snapshot cache dir, keyed on
+      # the bundle content and worker id (the worker's baseline set is fixed
+      # by the plan). The harness's own cache key additionally folds in host
+      # CPU identity (hostRestoreID); see the per-baseline harness log line
+      # emitted below. Cold runs never touch actions/cache.
+      - name: Restore harness snapshot cache (warm)
+        if: endsWith(github.ref_name, '-warm')
+        id: snap-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: /tmp/gh-snapshots
+          key: snap-${{ env.BUNDLE_SHA256 }}-c-${{ matrix.worker }}
+      - name: Run this worker's baseline sets
+        working-directory: bundle
+        run: |
+          set -uo pipefail
+          mkdir -p /tmp/gh-snapshots
+          mkdir -p /tmp/gh && ln -sf "$BUNDLE/artifacts/vmlinux" "$BUNDLE/artifacts/initramfs.cpio.gz" /tmp/gh/  # the bundle ships its own guest; the pin is unreachable by design
+          export HARNESS_ASSET_CACHE="$BUNDLE/cache/assets" HARNESS_FIRECRACKER="$BUNDLE/bin/firecracker" PATH="$BUNDLE/bin:$PATH"
+          export HARNESS_GUEST_BUILD_FINGERPRINT="$(cat guest-build-fingerprint)"
+          # baseline label -> -upstream-configs value (docs/p82/kyverno-equivalence-2026-09-25/build-manifest.py baseline()).
+          declare -A CONFIGS=(
+            [B1-standard]=standard
+            [B2-default]=default
+            [B3-force-failure-policy-ignore]=standard,force-failure-policy-ignore
+            [B4-generate-map]=standard,generate-mutating-admission-policy
+            [B5-map-reports]=standard,mutating-admission-policy-reports
+          )
+          plan="$GITHUB_WORKSPACE/.github/measurement/bench/plans/c/w${{ matrix.worker }}"
+          rc=0
+          # the primary baseline first: every worker but w0 pays exactly one baseline build.
+          for f in $(ls "$plan"/B1-standard.dirs 2>/dev/null) $(ls "$plan"/*.dirs 2>/dev/null | grep -v '/B1-standard.dirs$'); do
+            baseline=$(basename "$f" .dirs)
+            set="${CONFIGS[$baseline]}"
+            export HARNESS_TIMING_JSONL="$EVIDENCE/harness-$baseline.jsonl"
+            "$GITHUB_WORKSPACE/.github/measurement/bench/phase.sh" "sweep:$baseline" \
+              ./bin/p82-sweep -kyverno "$GITHUB_WORKSPACE/upstream" -sut "$BUNDLE/artifacts/sut/kyverno-admission" \
+              -install-ns kyverno -controllers all -upstream-ci -no-fail-fast -upstream-configs "$set" \
+              -concurrency 2 -dirs-file "$f" -out "$EVIDENCE/result-$baseline.jsonl" 2> "$EVIDENCE/sweep-$baseline.log" || rc=1
+          done
+          exit $rc
+      - name: Dispose runtime state
+        if: always()
+        run: |
+          .github/measurement/bench/phase.sh dispose bash -c 'pkill -x firecracker; du -sh /tmp/gh /tmp/gh-snapshots > "$EVIDENCE/disk-usage.txt" 2>&1; rm -rf /tmp/gh' || true
+          # Warm only: keep /tmp/gh-snapshots (the restored baseline snapshot
+          # dirs) so the post-job actions/cache save step has something to
+          # save on a first (miss) run. Cold has no cache step, so remove it.
+          if [ "${{ endsWith(github.ref_name, '-warm') }}" != "true" ]; then rm -rf /tmp/gh-snapshots; fi
+      - name: Collect evidence
+        if: always()
+        run: |
+          pkill vmstat || true
+          echo "{\"phase\":\"job_steps_end\",\"unix_ns\":$(date +%s%N)}" >> "$EVIDENCE/phases.jsonl"
+          "$GITHUB_WORKSPACE/.github/measurement/bench/emit-evidence.sh"
+      - name: Emit cache evidence (warm)
+        if: always() && endsWith(github.ref_name, '-warm')
+        run: |
+          for f in "$EVIDENCE"/sweep-*.log; do
+            [ -e "$f" ] || continue
+            baseline=$(basename "$f" .log); baseline=${baseline#sweep-}
+            harness_line=$(grep -E 'snapshot cache (hit|miss)' "$f" | tail -1 || true)
+            harness_hit="null"
+            case "$harness_line" in *"cache hit"*) harness_hit=true ;; *"cache miss"*) harness_hit=false ;; esac
+            echo "BENCH-EVIDENCE cache {\"arm\":\"c\",\"key\":\"snap-${BUNDLE_SHA256}-c-${{ matrix.worker }}\",\"baseline\":\"$baseline\",\"hit\":${{ steps.snap-cache.outputs.cache-hit == 'true' }},\"harness_hit\":$harness_hit,\"harness_line\":\"$harness_line\",\"reason\":\"actions/cache keyed on BUNDLE_SHA256+worker; harness key additionally folds in host CPU identity, so harness_hit=false despite hit=true means a foreign-CPU entry\"}"
+          done
