@@ -1,0 +1,15 @@
+generate/policy/standard/clone/nosync/pol-clone-nosync-delete-policy
+generate/policy/standard/clone/nosync/pol-clone-nosync-delete-rule
+generate/policy/standard/clone/nosync/pol-clone-nosync-delete-source
+generate/policy/standard/clone/nosync/pol-clone-nosync-delete-trigger
+generate/policy/standard/clone/nosync/pol-clone-nosync-invalid
+generate/policy/standard/clone/nosync/pol-clone-nosync-modify-downstream
+generate/policy/standard/clone/nosync/pol-clone-nosync-modify-source
+generate/policy/standard/clone/nosync/pol-clone-nosync-update-trigger-no-match
+generate/policy/standard/clone/sync/pol-clone-sync-delete-downstream
+generate/policy/standard/clone/sync/pol-clone-sync-delete-policy
+generate/policy/standard/clone/sync/pol-clone-sync-delete-rule
+generate/policy/standard/clone/sync/pol-clone-sync-delete-source
+generate/policy/standard/clone/sync/pol-clone-sync-delete-trigger
+generate/policy/standard/clone/sync/pol-clone-sync-invalid
+generate/policy/standard/clone/sync/pol-clone-sync-modify-downstream

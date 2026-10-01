@@ -1,0 +1,6 @@
+generate-validating-admission-policy/clusterpolicy/standard/generate/block-exec-in-pods
+generate/foreach/clusterpolicy/clone/sync/cpol-clone-sync-update-source
+generating-policies/apply-v1
+image-validating-policies/context/globalreference
+validating-policies/subresources/block-ephemeral-containers
+validating-policies/webhook-configuration/fine-grained-tests/match-constraints
