@@ -1,0 +1,12 @@
+background-only/cluster-policy/no-admission-event
+background-only/cluster-policy/no-admission-event-deprecated
+background-only/cluster-policy/no-admission-report
+background-only/cluster-policy/no-admission-report-deprecated
+background-only/cluster-policy/not-rejected
+background-only/cluster-policy/not-rejected-deprecated
+background-only/policy/no-admission-event
+background-only/policy/no-admission-event-deprecated
+background-only/policy/no-admission-report
+background-only/policy/no-admission-report-deprecated
+background-only/policy/not-rejected
+background-only/policy/not-rejected-deprecated

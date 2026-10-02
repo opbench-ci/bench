@@ -1,0 +1,295 @@
+{
+ "dirs": 839,
+ "kind_estimate_population_median_s": 8.44,
+ "routed": 44,
+ "routed_by_rule": {
+  "gap": 28,
+  "guest-only": 16
+ },
+ "workers": [
+  {
+   "dirs": 15,
+   "h_routed_slots": [
+    {
+     "dirs": 4,
+     "groups": [
+      "B3-force-failure-policy-ignore"
+     ],
+     "predicted_s": 84.3
+    },
+    {
+     "dirs": 2,
+     "groups": [
+      "B4-generate-map"
+     ],
+     "predicted_s": 83.8
+    }
+   ],
+   "k_slots": [
+    {
+     "dirs": 9,
+     "groups": [
+      "B4-generate-map",
+      "B5-map-reports"
+     ],
+     "predicted_s": 250.5
+    },
+    {
+     "dirs": 6,
+     "groups": [
+      "B2-default",
+      "B3-force-failure-policy-ignore"
+     ],
+     "predicted_s": 180.9
+    }
+   ],
+   "routed": 6,
+   "worker": "w0"
+  },
+  {
+   "dirs": 116,
+   "h_routed_slots": [
+    {
+     "dirs": 6,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 160.7
+    },
+    {
+     "dirs": 0,
+     "groups": [],
+     "predicted_s": 0.0
+    }
+   ],
+   "k_slots": [
+    {
+     "dirs": 58,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 714.1
+    },
+    {
+     "dirs": 58,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 714.2
+    }
+   ],
+   "routed": 6,
+   "worker": "w1"
+  },
+  {
+   "dirs": 118,
+   "h_routed_slots": [
+    {
+     "dirs": 6,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 135.5
+    },
+    {
+     "dirs": 0,
+     "groups": [],
+     "predicted_s": 0.0
+    }
+   ],
+   "k_slots": [
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 662.8
+    },
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 662.9
+    }
+   ],
+   "routed": 6,
+   "worker": "w2"
+  },
+  {
+   "dirs": 118,
+   "h_routed_slots": [
+    {
+     "dirs": 7,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 165.4
+    },
+    {
+     "dirs": 0,
+     "groups": [],
+     "predicted_s": 0.0
+    }
+   ],
+   "k_slots": [
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 676.3
+    },
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 676.3
+    }
+   ],
+   "routed": 7,
+   "worker": "w3"
+  },
+  {
+   "dirs": 118,
+   "h_routed_slots": [
+    {
+     "dirs": 4,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 134.7
+    },
+    {
+     "dirs": 0,
+     "groups": [],
+     "predicted_s": 0.0
+    }
+   ],
+   "k_slots": [
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 736.1
+    },
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 736.1
+    }
+   ],
+   "routed": 4,
+   "worker": "w4"
+  },
+  {
+   "dirs": 118,
+   "h_routed_slots": [
+    {
+     "dirs": 5,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 107.9
+    },
+    {
+     "dirs": 0,
+     "groups": [],
+     "predicted_s": 0.0
+    }
+   ],
+   "k_slots": [
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 686.7
+    },
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 686.7
+    }
+   ],
+   "routed": 5,
+   "worker": "w5"
+  },
+  {
+   "dirs": 118,
+   "h_routed_slots": [
+    {
+     "dirs": 6,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 111.0
+    },
+    {
+     "dirs": 0,
+     "groups": [],
+     "predicted_s": 0.0
+    }
+   ],
+   "k_slots": [
+    {
+     "dirs": 58,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 713.5
+    },
+    {
+     "dirs": 60,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 713.4
+    }
+   ],
+   "routed": 6,
+   "worker": "w6"
+  },
+  {
+   "dirs": 118,
+   "h_routed_slots": [
+    {
+     "dirs": 4,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 133.0
+    },
+    {
+     "dirs": 0,
+     "groups": [],
+     "predicted_s": 0.0
+    }
+   ],
+   "k_slots": [
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 750.7
+    },
+    {
+     "dirs": 59,
+     "groups": [
+      "B1-standard"
+     ],
+     "predicted_s": 750.7
+    }
+   ],
+   "routed": 4,
+   "worker": "w7"
+  }
+ ]
+}

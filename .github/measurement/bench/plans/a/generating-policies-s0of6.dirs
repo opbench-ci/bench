@@ -1,0 +1,12 @@
+generating-policies/apply-v1
+generating-policies/clone/nosync/generate-on-trigger-deletion
+generating-policies/clone/nosync/generate-secrets
+generating-policies/clone/nosync/generate-secrets-and-networkpolicies
+generating-policies/clone/nosync/nosync-create
+generating-policies/clone/nosync/nosync-delete-downstream
+generating-policies/clone/nosync/nosync-delete-policy
+generating-policies/clone/nosync/nosync-delete-source
+generating-policies/clone/nosync/nosync-delete-trigger
+generating-policies/clone/nosync/nosync-modify-downstream
+generating-policies/clone/nosync/nosync-modify-source
+generating-policies/clone/sync/sync-delete-downstream

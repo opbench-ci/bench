@@ -1,0 +1,12 @@
+filter/exclude/sa/no-wildcard
+filter/exclude/sa/wildcard
+filter/exclude/user/no-wildcard/block
+filter/exclude/user/no-wildcard/pass
+filter/exclude/user/wildcard/block
+filter/exclude/user/wildcard/pass
+filter/match/sa/no-wildcard
+filter/match/sa/wildcard
+filter/match/user/no-wildcard/block
+filter/match/user/no-wildcard/pass
+filter/match/user/wildcard/block
+filter/match/user/wildcard/pass

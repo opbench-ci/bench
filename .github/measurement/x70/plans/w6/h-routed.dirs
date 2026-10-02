@@ -1,0 +1,6 @@
+generate-validating-admission-policy/validatingpolicy/generation-config/default
+generate/clusterpolicy/standard/data/nosync-deprecated/generate-on-subresource-trigger
+generating-policies/webhook/single
+image-validating-policies/webhook-configuration/fine-grained/match-conditions
+policy-validation/cluster-policy/crd-non-exist
+validating-policies/webhook-configuration/basic/single

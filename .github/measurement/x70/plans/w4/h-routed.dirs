@@ -1,0 +1,4 @@
+generating-policies/clone/sync/sync-delete-downstream
+generating-policies/data/sync/sync-modify-policy-with-two-triggers
+image-validating-policies/context/imagedata/imagereference
+validating-policies/webhook-configuration/fine-grained-tests/timeout
