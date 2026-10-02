@@ -1,0 +1,6 @@
+force-failure-policy-ignore/cluster-policy/fail
+force-failure-policy-ignore/cluster-policy/fail-deprecated
+force-failure-policy-ignore/image-validating-policy/fail
+force-failure-policy-ignore/validating-policy/fail
+generate-mutating-admission-policy/jsonpatch
+generate-mutating-admission-policy/with-cel-exceptions

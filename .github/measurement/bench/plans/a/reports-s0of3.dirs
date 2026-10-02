@@ -1,0 +1,8 @@
+reports/admission/exception
+reports/admission/label
+reports/admission/mutation
+reports/admission/namespaceselector
+reports/admission/namespaceselector-assert
+reports/admission/test-report-admission-mode
+reports/admission/test-report-audit-warn
+reports/admission/test-report-properties

@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-action.json
+
+name: Capture runner profile
+description: Print machine-readable hosted runner capacity and identity
+runs:
+  using: composite
+  steps:
+    - name: Capture runner profile
+      shell: bash
+      run: |
+        set -euo pipefail
+        profile="$RUNNER_TEMP/runner-profile.json"
+        cpus=$(nproc)
+        ram_bytes=$(awk '/MemTotal:/ { print $2 * 1024 }' /proc/meminfo)
+        disk_free_bytes=$(df --output=avail -B1 "$GITHUB_WORKSPACE" | tail -n 1 | tr -d ' ')
+        kvm_exists=false
+        kvm_accessible=false
+        if [[ -e /dev/kvm ]]; then kvm_exists=true; fi
+        if [[ -r /dev/kvm && -w /dev/kvm ]]; then kvm_accessible=true; fi
+        jq -n \
+          --arg runner "$RUNNER_NAME" \
+          --arg image_os "${ImageOS:-unknown}" \
+          --arg image_version "${ImageVersion:-unknown}" \
+          --arg kernel "$(uname -srmo)" \
+          --arg arch "$(uname -m)" \
+          --arg workflow "$GITHUB_WORKFLOW" \
+          --arg job "$GITHUB_JOB" \
+          --arg sha "$GITHUB_SHA" \
+          --arg run_id "$GITHUB_RUN_ID" \
+          --arg run_attempt "$GITHUB_RUN_ATTEMPT" \
+          --argjson cpus "$cpus" \
+          --argjson ram_bytes "$ram_bytes" \
+          --argjson disk_free_bytes "$disk_free_bytes" \
+          --argjson kvm_exists "$kvm_exists" \
+          --argjson kvm_accessible "$kvm_accessible" \
+          '{runner:$runner,image_os:$image_os,image_version:$image_version,kernel:$kernel,architecture:$arch,workflow:$workflow,job:$job,sha:$sha,run_id:$run_id,run_attempt:$run_attempt,logical_cpus:$cpus,ram_bytes:$ram_bytes,workspace_free_disk_bytes:$disk_free_bytes,kvm_device_present:$kvm_exists,kvm_read_write_access:$kvm_accessible}' \
+          > "$profile"
+        echo 'Runner profile (JSON):'
+        cat "$profile"
