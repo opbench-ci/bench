@@ -1,0 +1,7 @@
+generating-policies/clone/sync/sync-delete-source
+generating-policies/clone/sync/sync-delete-trigger
+generating-policies/clone/sync/sync-modify-one-source
+generating-policies/clone/sync/sync-modify-policy-to-change-source
+generating-policies/clone/sync/sync-modify-source
+generating-policies/clone/sync/sync-modify-trigger
+generating-policies/clone/sync/update-policy-to-disable-sync
