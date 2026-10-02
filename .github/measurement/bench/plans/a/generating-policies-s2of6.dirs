@@ -1,0 +1,12 @@
+generating-policies/context/globalcontextentry
+generating-policies/custom-labels
+generating-policies/data/nosync/generate-cm
+generating-policies/data/nosync/generate-on-eviction-subresource-trigger
+generating-policies/data/nosync/generate-on-subresource-trigger
+generating-policies/data/nosync/generate-on-trigger-deletion
+generating-policies/data/nosync/nosync-delete-downstream
+generating-policies/data/nosync/nosync-delete-policy
+generating-policies/data/nosync/nosync-modify-downstream
+generating-policies/data/nosync/nosync-modify-policy
+generating-policies/data/sync/generate-clusterrolebinding-from-namespace
+generating-policies/data/sync/match-namespace-with-ns-selector

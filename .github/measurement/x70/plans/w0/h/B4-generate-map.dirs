@@ -1,0 +1,4 @@
+generate-mutating-admission-policy/autogen-enabled
+generate-mutating-admission-policy/generation-config/default
+generate-mutating-admission-policy/generation-config/disabled
+generate-mutating-admission-policy/with-multiple-exceptions

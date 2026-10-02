@@ -1,0 +1,405 @@
+package common
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"io"
+	"path/filepath"
+	"strings"
+	"time"
+
+	"github.com/go-git/go-billy/v5"
+	kyvernov1 "github.com/kyverno/kyverno/api/kyverno/v1"
+	"github.com/kyverno/kyverno/cmd/cli/kubectl-kyverno/apis/v1alpha1"
+	"github.com/kyverno/kyverno/cmd/cli/kubectl-kyverno/log"
+	"github.com/kyverno/kyverno/cmd/cli/kubectl-kyverno/resource"
+	"github.com/kyverno/kyverno/pkg/admissionpolicy"
+	"github.com/kyverno/kyverno/pkg/autogen"
+	"github.com/kyverno/kyverno/pkg/cli/loader"
+	"github.com/kyverno/kyverno/pkg/clients/dclient"
+	engineapi "github.com/kyverno/kyverno/pkg/engine/api"
+	kubeutils "github.com/kyverno/kyverno/pkg/utils/kube"
+	utils "github.com/kyverno/kyverno/pkg/utils/restmapper"
+	admissionregistrationv1 "k8s.io/api/admissionregistration/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+)
+
+var errOpenResourceFile = errors.New("open resource file")
+
+type resourceTypeInfo struct {
+	gvkMap         map[schema.GroupVersionKind]bool
+	subresourceMap map[schema.GroupVersionKind]v1alpha1.Subresource
+}
+type ResourceFetcher struct {
+	Out                  io.Writer
+	Policies             []engineapi.GenericPolicy
+	ResourcePaths        []string
+	Client               dclient.Interface
+	Cluster              bool
+	Namespace            string
+	PolicyReport         bool
+	ClusterWideResources bool
+	ResourceOptions      loader.ResourceOptions
+	ShowPerformance      bool
+}
+
+// GetResources gets matched resources by the given policies
+// The resources are fetched from:
+// - local paths, if given
+// - the k8s cluster, if given
+func (rf *ResourceFetcher) GetResources() ([]*unstructured.Unstructured, error) {
+	resources := make([]*unstructured.Unstructured, 0)
+	var err error
+
+	if rf.Cluster && rf.Client != nil {
+		resources, err = rf.getFromCluster()
+		if err != nil {
+			return resources, err
+		}
+	} else if len(rf.ResourcePaths) > 0 {
+		resources, err = rf.getFromLocalFiles()
+		if err != nil {
+			return resources, err
+		}
+	}
+	return resources, err
+}
+
+func (rf *ResourceFetcher) getFromLocalFiles() ([]*unstructured.Unstructured, error) {
+	resources := make([]*unstructured.Unstructured, 0)
+	for _, path := range rf.ResourcePaths {
+		resourceBytes, err := resource.GetFileBytes(path)
+		if err != nil {
+			if rf.PolicyReport {
+				log.Log.V(3).Info(fmt.Sprintf("failed to load resources: %s.", path), "error", err)
+			} else {
+				fmt.Fprintf(rf.Out, "\n----------------------------------------------------------------------\nfailed to load resources: %s. \nerror: %s\n----------------------------------------------------------------------\n", path, err)
+			}
+			continue
+		}
+
+		getResources, err := resource.GetUnstructuredResources(resourceBytes)
+		if err != nil {
+			return nil, err
+		}
+
+		resources = append(resources, getResources...)
+	}
+	return resources, nil
+}
+
+// getFromCluster fetches resources from the cluster.
+// It will first extract the matched resources from the policies.
+// Then it will fetch the resources from the cluster.
+func (rf *ResourceFetcher) getFromCluster() ([]*unstructured.Unstructured, error) {
+	resources := make([]*unstructured.Unstructured, 0)
+	info := &resourceTypeInfo{
+		gvkMap:         make(map[schema.GroupVersionKind]bool),
+		subresourceMap: make(map[schema.GroupVersionKind]v1alpha1.Subresource),
+	}
+	// extract the matched resources from the policies.
+	rf.extractResourcesFromPolicies(info)
+	resourceMap := make(map[string]*unstructured.Unstructured)
+	var err error
+	// fetch the resources from the cluster.
+	if rf.ResourceOptions.Concurrency > 1 {
+		log.Log.V(3).Info("Loading resources concurrently", "count", len(info.gvkMap))
+		// Convert gvkMaps to slice
+		gvks := make([]schema.GroupVersionKind, 0, len(info.gvkMap))
+		for gvk := range info.gvkMap {
+			gvks = append(gvks, gvk)
+		}
+		rf.ResourceOptions.ResourceTypes = gvks
+		resourceList, err := loader.LoadResourcesConcurrent(rf.Policies, rf.Client, rf.ResourceOptions, rf.ShowPerformance)
+		if err != nil {
+			return nil, err
+		}
+		for _, resource := range resourceList {
+			key := fmt.Sprintf("%s-%s-%s", resource.GroupVersionKind(), resource.GetNamespace(), resource.GetName())
+			resourceMap[key] = resource.DeepCopy()
+		}
+
+		if len(info.subresourceMap) > 0 {
+			var subResourceGvks []schema.GroupVersionKind
+			for subGvk := range info.subresourceMap {
+				subResourceGvks = append(subResourceGvks, subGvk)
+			}
+			rf.ResourceOptions.ResourceTypes = subResourceGvks
+			subResourceList, err := loader.LoadResourcesConcurrent(rf.Policies, rf.Client, rf.ResourceOptions, rf.ShowPerformance)
+			log.Log.V(3).Info("Loading sublist concurrently", "count", len(subResourceList))
+			if err != nil {
+				return nil, err
+			}
+			for _, resource := range subResourceList {
+				key := fmt.Sprintf("%s-%s-%s", resource.GroupVersionKind(), resource.GetNamespace(), resource.GetName())
+				resourceMap[key] = resource.DeepCopy()
+			}
+		}
+	} else {
+		start := time.Now()
+		log.Log.V(3).Info("Loading resources sequentially...")
+		resourceMap, err = rf.listResources(info)
+		if err != nil {
+			return nil, err
+		}
+		log.Log.V(3).Info("Loaded resources in", "duration", time.Since(start))
+	}
+	if len(rf.ResourcePaths) == 0 {
+		for _, rr := range resourceMap {
+			resources = append(resources, rr)
+		}
+	} else {
+		for _, resourcePath := range rf.ResourcePaths {
+			lenOfResource := len(resources)
+			for rn, rr := range resourceMap {
+				s := strings.Split(rn, "-")
+				if s[2] == resourcePath {
+					resources = append(resources, rr)
+				}
+			}
+			if lenOfResource >= len(resources) {
+				if rf.PolicyReport {
+					log.Log.V(3).Info(fmt.Sprintf("%s not found in cluster", resourcePath))
+				} else {
+					fmt.Fprintf(rf.Out, "\n----------------------------------------------------------------------\nresource %s not found in cluster\n----------------------------------------------------------------------\n", resourcePath)
+				}
+				return nil, fmt.Errorf("%s not found in cluster", resourcePath)
+			}
+		}
+	}
+	return resources, nil
+}
+
+func (rf *ResourceFetcher) extractResourcesFromPolicies(info *resourceTypeInfo) {
+	for _, policy := range rf.Policies {
+		if kpol := policy.AsKyvernoPolicy(); kpol != nil {
+			for _, rule := range autogen.Default.ComputeRules(kpol, "") {
+				rf.getKindsFromRule(rule, info)
+			}
+		} else {
+			var matchResources *admissionregistrationv1.MatchResources
+			if vap := policy.AsValidatingAdmissionPolicy(); vap != nil {
+				matchResources = vap.GetDefinition().Spec.MatchConstraints
+			} else if vp := policy.AsValidatingPolicy(); vp != nil {
+				matchResources = vp.Spec.MatchConstraints
+			} else if ivp := policy.AsImageValidatingPolicy(); ivp != nil {
+				matchResources = ivp.Spec.MatchConstraints
+			} else if dp := policy.AsDeletingPolicy(); dp != nil {
+				matchResources = dp.GetDeletingPolicySpec().MatchConstraints
+			} else if cp := policy.AsCleanupPolicy(); cp != nil {
+				// CleanupPolicy match resources are Kyverno-specific match resources.
+				// For cluster fetching, translate the cleanup policy's match/exclude kinds into candidate GVKs.
+				if spec := cp.GetSpec(); spec != nil {
+					for _, kind := range spec.MatchResources.GetKinds() {
+						rf.addToresourceTypeInfo(kind, info)
+					}
+					if spec.ExcludeResources != nil {
+						for _, kind := range spec.ExcludeResources.GetKinds() {
+							rf.addToresourceTypeInfo(kind, info)
+						}
+					}
+				}
+				continue
+			} else if mapPolicy := policy.AsMutatingAdmissionPolicy(); mapPolicy != nil {
+				converted := admissionpolicy.ConvertMatchResources(mapPolicy.GetDefinition().Spec.MatchConstraints)
+				matchResources = converted
+			} else if gpol := policy.AsGeneratingPolicy(); gpol != nil {
+				matchResources = gpol.Spec.MatchConstraints
+			}
+			rf.getKindsFromPolicy(matchResources, info)
+		}
+	}
+}
+
+// getKindsFromRule will return the kinds from policy match block
+func (rf *ResourceFetcher) getKindsFromRule(
+	rule kyvernov1.Rule,
+	info *resourceTypeInfo,
+) {
+	for _, kind := range rule.MatchResources.Kinds {
+		rf.addToresourceTypeInfo(kind, info)
+	}
+	if rule.MatchResources.Any != nil {
+		for _, resFilter := range rule.MatchResources.Any {
+			for _, kind := range resFilter.ResourceDescription.Kinds {
+				rf.addToresourceTypeInfo(kind, info)
+			}
+		}
+	}
+	if rule.MatchResources.All != nil {
+		for _, resFilter := range rule.MatchResources.All {
+			for _, kind := range resFilter.ResourceDescription.Kinds {
+				rf.addToresourceTypeInfo(kind, info)
+			}
+		}
+	}
+}
+
+// getKindsFromPolicy will return the kinds from the following policies match block:
+// 1. K8s ValidatingAdmissionPolicy
+// 2. K8s MutatingAdmissionPolicy
+// 3. ValidatingPolicy
+func (rf *ResourceFetcher) getKindsFromPolicy(
+	matchResources *admissionregistrationv1.MatchResources,
+	info *resourceTypeInfo,
+) {
+	restMapper, err := utils.GetRESTMapper(rf.Client)
+	if err != nil {
+		log.Log.V(3).Info("failed to get rest mapper", "error", err)
+		return
+	}
+	kinds := admissionpolicy.GetKinds(matchResources, restMapper)
+	for _, kind := range kinds {
+		rf.addToresourceTypeInfo(kind, info)
+	}
+}
+
+func (rf *ResourceFetcher) addToresourceTypeInfo(
+	kind string,
+	info *resourceTypeInfo,
+) {
+	group, version, kind, subresource := kubeutils.ParseKindSelector(kind)
+	resourceDefs, err := rf.Client.Discovery().FindResources(group, version, kind, subresource)
+	if err != nil {
+		log.Log.V(2).Info("Failed to find resource", "kind", kind, "error", err)
+		return
+	}
+
+	for parent, child := range resourceDefs {
+		if rf.ClusterWideResources && child.Namespaced {
+			continue
+		}
+
+		if parent.SubResource == "" {
+			info.gvkMap[parent.GroupVersionKind()] = true
+		} else {
+			subGVK := schema.GroupVersionKind{
+				Group:   child.Group,
+				Version: child.Version,
+				Kind:    child.Kind,
+			}
+			info.subresourceMap[subGVK] = v1alpha1.Subresource{
+				Subresource: child,
+				ParentResource: metav1.APIResource{
+					Group:   parent.Group,
+					Version: parent.Version,
+					Kind:    parent.Kind,
+					Name:    parent.Resource,
+				},
+			}
+		}
+	}
+}
+
+func (rf *ResourceFetcher) listResources(
+	info *resourceTypeInfo,
+) (map[string]*unstructured.Unstructured, error) {
+	result := make(map[string]*unstructured.Unstructured)
+
+	// list standard resources
+	for gvk := range info.gvkMap {
+		resourceList, err := rf.Client.ListResource(
+			context.TODO(),
+			gvk.GroupVersion().String(),
+			gvk.Kind,
+			rf.Namespace,
+			nil,
+		)
+		if err != nil {
+			log.Log.V(3).Info("failed to list resource", "gvk", gvk, "error", err)
+			continue
+		}
+		for _, resource := range resourceList.Items {
+			key := fmt.Sprintf("%s-%s-%s", gvk.Kind, resource.GetNamespace(), resource.GetName())
+			resource.SetGroupVersionKind(gvk)
+			result[key] = resource.DeepCopy()
+		}
+	}
+
+	// list subresources
+	for subGVK, subresource := range info.subresourceMap {
+		parentGV := schema.GroupVersion{
+			Group:   subresource.ParentResource.Group,
+			Version: subresource.ParentResource.Version,
+		}
+		resourceList, err := rf.Client.ListResource(
+			context.TODO(),
+			parentGV.String(),
+			subresource.ParentResource.Kind,
+			rf.Namespace,
+			nil,
+		)
+		if err != nil {
+			log.Log.V(3).Info("failed to list parent resource", "gv", parentGV, "kind", subresource.ParentResource.Kind, "error", err)
+			continue
+		}
+
+		for _, parent := range resourceList.Items {
+			subresourceName := strings.Split(subresource.Subresource.Name, "/")[1]
+			resource, err := rf.Client.GetResource(
+				context.TODO(),
+				parentGV.String(),
+				subresource.ParentResource.Kind,
+				rf.Namespace,
+				parent.GetName(),
+				subresourceName,
+			)
+			if err != nil {
+				log.Log.V(3).Info("failed to get subresource", "parent", parent.GetName(), "subresource", subresourceName, "error", err)
+				continue
+			}
+
+			key := fmt.Sprintf("%s-%s-%s", subGVK.Kind, resource.GetNamespace(), resource.GetName())
+			resource.SetGroupVersionKind(subGVK)
+			result[key] = resource.DeepCopy()
+		}
+	}
+	return result, nil
+}
+
+// GetResourcesWithTest with gets matched resources by the given policies
+func GetResourcesWithTest(out io.Writer, fs billy.Filesystem, resourcePaths []string, policyResourcePath string) ([]*unstructured.Unstructured, error) {
+	resources := make([]*unstructured.Unstructured, 0)
+	if len(resourcePaths) > 0 {
+		for _, resourcePath := range resourcePaths {
+			var resourceBytes []byte
+			var err error
+			if fs != nil {
+				resourceBytes, err = readResourceBytes(fs, filepath.Join(policyResourcePath, resourcePath))
+				if errors.Is(err, errOpenResourceFile) {
+					fmt.Fprintf(out, "Unable to open resource file: %s. error: %s", resourcePath, errors.Unwrap(err))
+					continue
+				}
+			} else {
+				resourceBytes, err = resource.GetFileBytes(resourcePath)
+			}
+			if err != nil {
+				fmt.Fprintf(out, "\n----------------------------------------------------------------------\nfailed to load resources: %s. \nerror: %s\n----------------------------------------------------------------------\n", resourcePath, err)
+				continue
+			}
+
+			getResources, err := resource.GetUnstructuredResources(resourceBytes)
+			if err != nil {
+				return nil, err
+			}
+
+			resources = append(resources, getResources...)
+		}
+	}
+	return resources, nil
+}
+
+func readResourceBytes(fs billy.Filesystem, path string) ([]byte, error) {
+	filep, err := fs.Open(path)
+	if err != nil {
+		return nil, fmt.Errorf("%w: %w", errOpenResourceFile, err)
+	}
+	resourceBytes, err := io.ReadAll(filep)
+	if closeErr := filep.Close(); closeErr != nil && err == nil {
+		err = closeErr
+	}
+	return resourceBytes, err
+}
