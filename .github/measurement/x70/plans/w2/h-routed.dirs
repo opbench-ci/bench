@@ -1,0 +1,6 @@
+generating-policies/data/nosync/generate-on-subresource-trigger
+generating-policies/webhook/match-conditions
+image-validating-policies/webhook-configuration/combined
+validating-policies/apply-v1
+validating-policies/context/globalreference-missing-graceful-edge-cases
+validating-policies/webhook-configuration/basic/multiple

@@ -1,0 +1,12 @@
+generating-policies/data/sync/sync-delete-downstream
+generating-policies/data/sync/sync-delete-one-trigger
+generating-policies/data/sync/sync-delete-policy-with-orphan-downstream
+generating-policies/data/sync/sync-delete-policy-without-orphan-downstream
+generating-policies/data/sync/sync-modify-downstream
+generating-policies/data/sync/sync-modify-policy-and-downstream-another-kind
+generating-policies/data/sync/sync-modify-policy-and-downstream-data
+generating-policies/data/sync/sync-modify-policy-and-downstream-name
+generating-policies/data/sync/sync-modify-policy-with-two-triggers
+generating-policies/data/sync/update-policy-to-disable-sync
+generating-policies/exceptions/allowed-images
+generating-policies/exceptions/clone-generate-secrets

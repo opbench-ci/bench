@@ -1,0 +1,7 @@
+generate-validating-admission-policy/validatingpolicy/generation-config/disabled
+generate/clusterpolicy/standard/data/nosync/generate-on-subresource-trigger
+generating-policies/data/sync/match-namespace-with-ns-selector
+image-validating-policies/autogen/should-not-autogen
+image-validating-policies/webhook-configuration/fine-grained/match-constraints
+policy-validation/cluster-policy/background-subresource
+validating-policies/webhook-configuration/combined
