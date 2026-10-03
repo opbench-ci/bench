@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-dockerhub
+  namespace: isolated-ns
+  labels:
+    source: public.ecr.aws
+spec:
+  containers:
+    - name: nginx
+      image: public.ecr.aws/docker/library/nginx:latest
