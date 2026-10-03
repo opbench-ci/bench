@@ -1,0 +1,13 @@
+generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-downstream
+generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-policy
+generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-rule
+generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-trigger
+generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-modify-downstream
+generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-modify-rule
+generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-update-trigger-no-match
+generate/clusterpolicy/standard/data/nosync/generate-on-eviction-subresource-trigger
+generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-create
+generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-downstream
+generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-policy
+generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-rule
+generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-existing-update-trigger-no-precondition

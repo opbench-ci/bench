@@ -1,0 +1,61 @@
+[
+ {
+  "worker": 0,
+  "sets": {
+   "B3-force-failure-policy-ignore": 5,
+   "B4-generate-map": 6,
+   "B5-map-reports": 3,
+   "B2-default": 1
+  },
+  "predicted_s": 323.9
+ },
+ {
+  "worker": 1,
+  "sets": {
+   "B1-standard": 116
+  },
+  "predicted_s": 241.9
+ },
+ {
+  "worker": 2,
+  "sets": {
+   "B1-standard": 118
+  },
+  "predicted_s": 241.9
+ },
+ {
+  "worker": 3,
+  "sets": {
+   "B1-standard": 118
+  },
+  "predicted_s": 241.9
+ },
+ {
+  "worker": 4,
+  "sets": {
+   "B1-standard": 118
+  },
+  "predicted_s": 241.9
+ },
+ {
+  "worker": 5,
+  "sets": {
+   "B1-standard": 118
+  },
+  "predicted_s": 241.9
+ },
+ {
+  "worker": 6,
+  "sets": {
+   "B1-standard": 118
+  },
+  "predicted_s": 241.9
+ },
+ {
+  "worker": 7,
+  "sets": {
+   "B1-standard": 118
+  },
+  "predicted_s": 241.9
+ }
+]

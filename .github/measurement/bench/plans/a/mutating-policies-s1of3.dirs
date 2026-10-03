@@ -1,0 +1,9 @@
+mutating-policies/context/resource/get
+mutating-policies/context/resource/match-conditions
+mutating-policies/context/userinfo/admission
+mutating-policies/exceptions/exclude-images
+mutating-policies/exceptions/regular
+mutating-policies/existing/different-trigger-target
+mutating-policies/existing/expression/get
+mutating-policies/existing/expression/list
+mutating-policies/existing/same-trigger-target

@@ -1,0 +1,290 @@
+[
+ {
+  "id": "assert",
+  "dirs": 2
+ },
+ {
+  "id": "autogen",
+  "dirs": 17
+ },
+ {
+  "id": "background-only",
+  "dirs": 12
+ },
+ {
+  "id": "deferred",
+  "dirs": 6
+ },
+ {
+  "id": "events",
+  "dirs": 11
+ },
+ {
+  "id": "exceptions-s0of3",
+  "dirs": 9
+ },
+ {
+  "id": "exceptions-s1of3",
+  "dirs": 9
+ },
+ {
+  "id": "exceptions-s2of3",
+  "dirs": 9
+ },
+ {
+  "id": "filter",
+  "dirs": 12
+ },
+ {
+  "id": "force-failure-policy-ignore",
+  "dirs": 5
+ },
+ {
+  "id": "generate-mutating-admission-policy",
+  "dirs": 6
+ },
+ {
+  "id": "generate-s0of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s10of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s11of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s1of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s2of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s3of12",
+  "dirs": 16
+ },
+ {
+  "id": "generate-s4of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s5of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s6of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s7of12",
+  "dirs": 16
+ },
+ {
+  "id": "generate-s8of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-s9of12",
+  "dirs": 15
+ },
+ {
+  "id": "generate-validating-admission-policy",
+  "dirs": 47
+ },
+ {
+  "id": "generating-policies-s0of6",
+  "dirs": 12
+ },
+ {
+  "id": "generating-policies-s1of6",
+  "dirs": 7
+ },
+ {
+  "id": "generating-policies-s2of6",
+  "dirs": 12
+ },
+ {
+  "id": "generating-policies-s3of6",
+  "dirs": 12
+ },
+ {
+  "id": "generating-policies-s4of6",
+  "dirs": 12
+ },
+ {
+  "id": "generating-policies-s5of6",
+  "dirs": 12
+ },
+ {
+  "id": "globalcontext",
+  "dirs": 9
+ },
+ {
+  "id": "image-validating-policies-s0of3",
+  "dirs": 6
+ },
+ {
+  "id": "image-validating-policies-s1of3",
+  "dirs": 1
+ },
+ {
+  "id": "image-validating-policies-s2of3",
+  "dirs": 6
+ },
+ {
+  "id": "mutate-s0of3",
+  "dirs": 24
+ },
+ {
+  "id": "mutate-s1of3",
+  "dirs": 25
+ },
+ {
+  "id": "mutate-s2of3",
+  "dirs": 26
+ },
+ {
+  "id": "mutating-admission-policy-reports",
+  "dirs": 3
+ },
+ {
+  "id": "mutating-policies-s0of3",
+  "dirs": 8
+ },
+ {
+  "id": "mutating-policies-s1of3",
+  "dirs": 11
+ },
+ {
+  "id": "mutating-policies-s2of3",
+  "dirs": 11
+ },
+ {
+  "id": "namespaced-generating-policies-s1of3",
+  "dirs": 1
+ },
+ {
+  "id": "namespaced-generating-policies-s2of3",
+  "dirs": 1
+ },
+ {
+  "id": "namespaced-image-validating-policies",
+  "dirs": 2
+ },
+ {
+  "id": "namespaced-mutating-policies",
+  "dirs": 1
+ },
+ {
+  "id": "namespaced-validating-policies-s0of3",
+  "dirs": 2
+ },
+ {
+  "id": "namespaced-validating-policies-s1of3",
+  "dirs": 2
+ },
+ {
+  "id": "namespaced-validating-policies-s2of3",
+  "dirs": 2
+ },
+ {
+  "id": "policy-exceptions-disabled",
+  "dirs": 1
+ },
+ {
+  "id": "policy-validation",
+  "dirs": 23
+ },
+ {
+  "id": "rangeoperators",
+  "dirs": 1
+ },
+ {
+  "id": "rbac-standard",
+  "dirs": 2
+ },
+ {
+  "id": "reports-s0of3",
+  "dirs": 8
+ },
+ {
+  "id": "reports-s1of3",
+  "dirs": 8
+ },
+ {
+  "id": "reports-s2of3",
+  "dirs": 7
+ },
+ {
+  "id": "validate-s0of8",
+  "dirs": 20
+ },
+ {
+  "id": "validate-s1of8",
+  "dirs": 20
+ },
+ {
+  "id": "validate-s2of8",
+  "dirs": 21
+ },
+ {
+  "id": "validate-s3of8",
+  "dirs": 20
+ },
+ {
+  "id": "validate-s4of8",
+  "dirs": 20
+ },
+ {
+  "id": "validate-s5of8",
+  "dirs": 21
+ },
+ {
+  "id": "validate-s6of8",
+  "dirs": 19
+ },
+ {
+  "id": "validate-s7of8",
+  "dirs": 19
+ },
+ {
+  "id": "validating-admission-policy-reports",
+  "dirs": 7
+ },
+ {
+  "id": "validating-policies-s0of5",
+  "dirs": 9
+ },
+ {
+  "id": "validating-policies-s1of5",
+  "dirs": 10
+ },
+ {
+  "id": "validating-policies-s2of5",
+  "dirs": 11
+ },
+ {
+  "id": "validating-policies-s3of5",
+  "dirs": 12
+ },
+ {
+  "id": "validating-policies-s4of5",
+  "dirs": 12
+ },
+ {
+  "id": "verify-manifests",
+  "dirs": 4
+ },
+ {
+  "id": "webhook-configurations",
+  "dirs": 6
+ },
+ {
+  "id": "webhooks",
+  "dirs": 23
+ }
+]
