@@ -1,0 +1,8 @@
+validating-policies/autogen/autogen-deployments-cronjobs
+validating-policies/autogen/autogen-deployments-statefulsets
+validating-policies/autogen/none
+validating-policies/autogen/should-autogen
+validating-policies/autogen/should-not-autogen
+validating-policies/context/configmap
+validating-policies/context/globalreference
+validating-policies/context/globalreference-missing-graceful

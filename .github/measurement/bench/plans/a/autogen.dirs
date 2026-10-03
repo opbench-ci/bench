@@ -1,0 +1,17 @@
+autogen/assert-autogen
+autogen/cel-preconditions
+autogen/conditions
+autogen/conditions-deprecated
+autogen/deployment-cronjob
+autogen/deployment-cronjob-deprecated
+autogen/deployment-statefulset-job
+autogen/foreach-jsonpatch
+autogen/none
+autogen/none-deprecated
+autogen/only-cronjob
+autogen/only-deployment
+autogen/restrict-image-registries
+autogen/should-autogen
+autogen/should-autogen-deprecated
+autogen/should-not-autogen
+autogen/should-not-autogen-deprecated

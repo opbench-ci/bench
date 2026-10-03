@@ -1,0 +1,10 @@
+generating-policies/matchconditions/cel-libs
+generating-policies/reports/error-generating-resource
+generating-policies/reports/generate-cm
+generating-policies/reports/generate-secrets
+generating-policies/reports/with-exception-pass-result
+generating-policies/reports/with-exception-skip-result
+generating-policies/reports/with-exceptions
+generating-policies/validate/invalid-cel-expression
+generating-policies/validate/missing-generate
+generating-policies/validate/missing-match-constraints

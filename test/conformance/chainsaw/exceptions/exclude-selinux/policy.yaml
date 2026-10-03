@@ -1,0 +1,18 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: psa
+spec:
+  background: true
+  rules:
+  - name: baseline
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    validate:
+      failureAction: Enforce
+      podSecurity:
+        level: baseline
+        version: latest
