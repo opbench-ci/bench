@@ -1,0 +1,17 @@
+webhooks/clusterpolicy
+webhooks/double-wildcard
+webhooks/dyn-op-mutate
+webhooks/dyn-op-mutate-multiple
+webhooks/dyn-op-validate-and-mutate
+webhooks/expected-webhooks
+webhooks/only-pod
+webhooks/pod-all-subresources
+webhooks/pod-exec-subresource
+webhooks/policy
+webhooks/policy-clusterpolicy-namespaced-clusterscoped-resources
+webhooks/policy-clusterpolicy-namespaced-resources
+webhooks/policy-clusterpolicy-same-resource
+webhooks/policy-clusterpolicy-wildcard-resource
+webhooks/policy-clusterscope-resource
+webhooks/policy-wildcard-resource
+webhooks/scale

@@ -1,0 +1,16 @@
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-policy
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-rule
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-source
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-trigger
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-existing-update-trigger-no-precondition
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-existing-update-trigger-no-precondition-deprecated
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-downstream
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-downstream-apply
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-source
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-no-existing-update-trigger-no-precondition
+generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-update-trigger-no-match
+generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-downstream
+generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-policy
+generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-rule
+generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-modify-downstream
+generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-modify-rule

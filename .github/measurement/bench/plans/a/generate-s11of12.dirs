@@ -1,0 +1,13 @@
+generate/validation/clusterpolicy/prevent-loop
+generate/validation/clusterpolicy/use-generate-existing-on-policy-update
+generate/validation/clusterpolicy/warn-downstream-change
+generate/validation/clusterpolicy/permissions/same-kind
+generate/validation/policy/cloneList
+generate/validation/policy/immutable-rule-spec
+generate/validation/policy/permissions
+generate/validation/policy/prevent-loop
+generate/validation/policy/target-namespace-scope
+generate/validation/policy/use-generate-existing-on-policy-update
+generate/validation/policy/warn-clone-change
+generate/validation/policy/warn-clonelist-change
+generate/validation/policy/warn-downstream-change

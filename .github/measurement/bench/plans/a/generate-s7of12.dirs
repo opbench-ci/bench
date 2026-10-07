@@ -1,0 +1,13 @@
+generate/foreach/clusterpolicy/clone/sync/cpol-clone-sync-create
+generate/foreach/clusterpolicy/data/sync/cpol-data-sync-create
+generate/foreach/clusterpolicy/data/sync/cpol-data-sync-delete-policy
+generate/foreach/clusterpolicy/data/sync/cpol-data-sync-update-policy
+generate/foreach/clusterpolicy/data/sync/cpol-data-sync-update-target
+generate/foreach/existing/cpol-clone-list-sync-create
+generate/foreach/existing/cpol-clone-sync-create
+generate/foreach/existing/cpol-data-sync-create
+generate/policy/cornercases/pol-clone-create-on-trigger-deletion
+generate/policy/cornercases/pol-clone-sync-create-source-after-policy
+generate/policy/cornercases/pol-data-create-on-trigger-deletion
+generate/policy/standard/clone/nosync/pol-clone-nosync-create
+generate/policy/standard/clone/nosync/pol-clone-nosync-delete-downstream

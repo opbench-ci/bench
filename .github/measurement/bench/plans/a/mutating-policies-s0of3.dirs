@@ -1,0 +1,7 @@
+mutating-policies/apply-v1
+mutating-policies/autogen/polex
+mutating-policies/admission/applyconfiguration
+mutating-policies/admission/jsonpatch
+mutating-policies/admission/multiple-policies-chaining
+mutating-policies/context/globalcontextentry
+mutating-policies/context/image

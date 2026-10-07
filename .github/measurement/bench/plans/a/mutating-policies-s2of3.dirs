@@ -1,0 +1,10 @@
+mutating-policies/gzip
+mutating-policies/request-object
+mutating-policies/matchconditions/cel-libs
+mutating-policies/reporting/admission
+mutating-policies/reporting/events-violation
+mutating-policies/reporting/existing-admission-flow
+mutating-policies/reporting/standard-background-policy-creation
+mutating-policies/reporting/with-exception-pass-result
+mutating-policies/reporting/with-exception-skip-result
+mutating-policies/reporting/with-exceptions
