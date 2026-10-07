@@ -1,0 +1,4658 @@
+{
+  "method": "descending unique failure observations, same-parent failures, top-level-group failures; stable directory ties",
+  "fixed_startup_failures": "omitted before reinstatement version",
+  "directories": [
+    "mutate/clusterpolicy/standard/basic-check-output",
+    "mutate/clusterpolicy/standard/existing/background-false",
+    "mutate/clusterpolicy/standard/existing/background-false(deprecated)",
+    "mutate/clusterpolicy/standard/existing/basic-create",
+    "mutate/clusterpolicy/standard/existing/basic-create(deprecated)",
+    "mutate/clusterpolicy/standard/existing/basic-create-patchesJson6902",
+    "mutate/clusterpolicy/standard/existing/basic-create-patchesJson6902(deprecated)",
+    "mutate/clusterpolicy/standard/existing/basic-delete",
+    "mutate/clusterpolicy/standard/existing/basic-delete(deprecated)",
+    "mutate/clusterpolicy/standard/existing/basic-update",
+    "mutate/clusterpolicy/standard/existing/basic-update(deprecated)",
+    "mutate/clusterpolicy/standard/existing/delete-trigger-namespace",
+    "mutate/clusterpolicy/standard/existing/delete-trigger-namespace(deprecated)",
+    "mutate/clusterpolicy/standard/existing/descending-patchJson6902",
+    "mutate/clusterpolicy/standard/existing/multiple-rules-match-exclude",
+    "mutate/clusterpolicy/standard/existing/multiple-rules-match-exclude(deprecated)",
+    "mutate/clusterpolicy/standard/existing/multiple-trigger-resources",
+    "mutate/clusterpolicy/standard/existing/multiple-trigger-resources(deprecated)",
+    "mutate/clusterpolicy/standard/existing/mutate-pod-on-binding-request",
+    "mutate/clusterpolicy/standard/existing/namespaceselector",
+    "mutate/clusterpolicy/standard/existing/namespaceselector(deprecated)",
+    "mutate/clusterpolicy/standard/existing/preconditions",
+    "mutate/clusterpolicy/standard/existing/preconditions(deprecated)",
+    "mutate/clusterpolicy/standard/existing/target-context",
+    "mutate/clusterpolicy/standard/existing/target-preconditions",
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-downstream",
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-policy",
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-rule",
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-trigger",
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-modify-downstream",
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-modify-rule",
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-update-trigger-no-match",
+    "webhooks/clusterpolicy",
+    "webhooks/double-wildcard",
+    "webhooks/dyn-op-mutate",
+    "webhooks/dyn-op-mutate-multiple",
+    "webhooks/dyn-op-validate-and-mutate",
+    "webhooks/expected-webhooks",
+    "webhooks/only-pod",
+    "webhooks/pod-all-subresources",
+    "webhooks/pod-exec-subresource",
+    "webhooks/policy",
+    "webhooks/policy-clusterpolicy-namespaced-clusterscoped-resources",
+    "webhooks/policy-clusterpolicy-namespaced-resources",
+    "webhooks/policy-clusterpolicy-same-resource",
+    "webhooks/policy-clusterpolicy-wildcard-resource",
+    "webhooks/policy-clusterscope-resource",
+    "webhooks/policy-wildcard-resource",
+    "webhooks/scale",
+    "mutating-policies/apply-v1",
+    "mutating-policies/gzip",
+    "mutating-policies/request-object",
+    "generating-policies/foreach/data/data-generate-nps",
+    "generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-delete-source",
+    "generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-update-source",
+    "generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-update-target",
+    "generate/foreach/clusterpolicy/clone/sync/cpol-clone-sync-create",
+    "generate/validation/clusterpolicy/cloneList",
+    "generate/validation/clusterpolicy/immutable-rule-spec",
+    "generate/validation/clusterpolicy/orphan",
+    "generate/validation/clusterpolicy/prevent-loop",
+    "generate/validation/clusterpolicy/use-generate-existing-on-policy-update",
+    "generate/validation/clusterpolicy/warn-downstream-change",
+    "validate/clusterpolicy/standard/gvk",
+    "validate/clusterpolicy/standard/gvk-deprecated",
+    "validate/clusterpolicy/standard/psa-deprecated/seccomp-latest-check-no-exclusion",
+    "validate/clusterpolicy/standard/psa-deprecated/test-deletion-request",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-host-ports",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-hostpath-volume",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-hostprocesses",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-privilege-escalation",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-privileged-containers",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-restricted-capabilities",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-restricted-seccomp",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-running-as-nonroot",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-running-as-nonroot-user",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-seccomp",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-selinux",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-sysctls",
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-volume-types",
+    "validate/clusterpolicy/standard/subresource-deprecated",
+    "generating-policies/reports/error-generating-resource",
+    "generating-policies/reports/generate-cm",
+    "generating-policies/reports/with-exception-pass-result",
+    "generating-policies/reports/with-exceptions",
+    "validating-policies/report/admission",
+    "validating-policies/report/with-exception",
+    "validating-policies/report/with-exception-skip-result",
+    "background-only/policy/no-admission-event",
+    "background-only/policy/no-admission-event-deprecated",
+    "background-only/policy/not-rejected",
+    "background-only/policy/not-rejected-deprecated",
+    "reports/admission/exception",
+    "reports/admission/mutation",
+    "reports/admission/namespaceselector",
+    "reports/admission/namespaceselector-assert",
+    "reports/admission/test-report-admission-mode",
+    "reports/admission/test-report-audit-warn",
+    "reports/admission/test-report-properties",
+    "reports/admission/update",
+    "reports/admission/update-deployment",
+    "mutate/clusterpolicy/standard/existing/validation/auth-check/cpol-namespace-variable",
+    "mutate/clusterpolicy/standard/existing/validation/auth-check/cpol-namespace-variable(deprecated)",
+    "mutate/clusterpolicy/standard/existing/validation/auth-check/cpol-standard-auth-check(deprecated)",
+    "mutate/e2e/foreach-patchStrategicMerge-context",
+    "mutate/e2e/foreach-patchStrategicMerge-preconditions",
+    "mutate/e2e/jmespath-logic",
+    "mutate/e2e/patchStrategicMerge-global",
+    "mutate/e2e/patchStrategicMerge-global-addifnotpresent",
+    "mutate/e2e/patchesJson6902-replace",
+    "mutate/e2e/patchesjson6902-simple",
+    "mutate/e2e/simple-conditional",
+    "mutate/e2e/variables-in-keys",
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-create",
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-downstream",
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-policy",
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-rule",
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-source",
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-trigger",
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-modify-downstream",
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-update-trigger-no-match",
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-create",
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-downstream",
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-policy",
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-rule",
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-modify-downstream",
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-modify-rule",
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-orphan-downstream-delete-policy",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-create",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-downstream",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-one-trigger",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-policy",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-rule",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-trigger",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-downstream",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-policy",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-rule",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-mutate-and-generate",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-no-existing-update-trigger-no-precondition",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-orphan-downstream-delete-policy",
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-update-trigger-no-match",
+    "generate/policy/standard/data/sync/pol-data-sync-create-policy-invalid",
+    "generate/policy/standard/data/sync/pol-data-sync-create-policy-valid",
+    "generate/policy/standard/data/sync/pol-data-sync-delete-downstream",
+    "generate/policy/standard/data/sync/pol-data-sync-delete-policy",
+    "generate/policy/standard/data/sync/pol-data-sync-delete-rule",
+    "generate/policy/standard/data/sync/pol-data-sync-delete-rule-deprecated",
+    "generate/policy/standard/data/sync/pol-data-sync-delete-trigger",
+    "generate/policy/standard/data/sync/pol-data-sync-modify-rule",
+    "generate/policy/standard/data/sync/pol-data-sync-modify-rule-deprecated",
+    "generate/policy/standard/data/sync/pol-data-sync-update-trigger-no-match",
+    "validate/anchors/conditional",
+    "validate/clusterpolicy/cornercases/apply-on-deletion",
+    "validate/clusterpolicy/cornercases/apply-on-deletion-deprecated",
+    "validate/clusterpolicy/cornercases/cel-messages-upon-resource-failure",
+    "validate/clusterpolicy/cornercases/cel-messages-upon-resource-failure-deprecated",
+    "validate/clusterpolicy/cornercases/check-message-upon-resource-failure",
+    "validate/clusterpolicy/cornercases/check-message-upon-resource-failure-deprecated",
+    "validate/clusterpolicy/cornercases/different-configuration-for-actions",
+    "validate/clusterpolicy/cornercases/external-metrics",
+    "validate/clusterpolicy/cornercases/external-metrics-deprecated",
+    "validate/clusterpolicy/cornercases/invalid-jmespath-variable-substitution-deprecated",
+    "validate/clusterpolicy/cornercases/psa-run-as-non-root",
+    "validate/clusterpolicy/cornercases/schema-validation-for-mutateExisting",
+    "validate/clusterpolicy/cornercases/schema-validation-for-mutateExisting-deprecated",
+    "validate/clusterpolicy/cornercases/two-rules-with-different-action",
+    "validate/clusterpolicy/cornercases/validate-pattern-should-fail",
+    "validate/clusterpolicy/cornercases/validate-pattern-should-fail-deprecated",
+    "validate/clusterpolicy/cornercases/validate-pattern-should-pass",
+    "validate/clusterpolicy/cornercases/validate-pattern-should-pass-deprecated",
+    "validate/clusterpolicy/cornercases/validate-pattern-should-skip",
+    "validate/clusterpolicy/cornercases/validate-pattern-should-skip-deprecated",
+    "validate/clusterpolicy/cornercases/variable-substitution-failure-messages",
+    "validate/clusterpolicy/cornercases/variable-substitution-failure-messages-deprecated",
+    "validate/clusterpolicy/standard/cel-deprecated/authorizor-checks/with-permissions",
+    "validate/clusterpolicy/standard/cel-deprecated/parameter-resources/namespaced/set-paramref-namespace",
+    "validate/clusterpolicy/standard/cel-deprecated/parameter-resources/namespaced/unset-paramref-namespace",
+    "validate/clusterpolicy/standard/cel/authorizor-checks/with-permissions",
+    "validate/clusterpolicy/standard/cel/parameter-resources/namespaced/set-paramref-namespace",
+    "validate/clusterpolicy/standard/cel/parameter-resources/namespaced/unset-paramref-namespace",
+    "validate/clusterpolicy/standard/enforce/api-initiated-pod-eviction",
+    "validate/clusterpolicy/standard/enforce/block-pod-exec-requests",
+    "validate/clusterpolicy/standard/enforce/bypass-with-policy-exception",
+    "validate/clusterpolicy/standard/enforce/csr",
+    "validate/clusterpolicy/standard/enforce/enforce-validate-existing",
+    "validate/clusterpolicy/standard/enforce/enforce-validate-existing-allow-existing-violations",
+    "validate/clusterpolicy/standard/enforce/enforce-validate-existing-deny",
+    "validate/clusterpolicy/standard/enforce/enforce-validate-existing-deprecated",
+    "validate/clusterpolicy/standard/enforce/enforce-validate-labeled-action-override",
+    "validate/clusterpolicy/standard/enforce/failure-policy-ignore-anchor",
+    "validate/clusterpolicy/standard/enforce/ns-selector-with-wildcard-kind",
+    "validate/clusterpolicy/standard/enforce/operator-allnotin-01",
+    "validate/clusterpolicy/standard/enforce/operator-anyin-boolean",
+    "validate/clusterpolicy/standard/enforce/resource-apply-block",
+    "validate/clusterpolicy/standard/enforce/scaling-with-kubectl-scale",
+    "validate/clusterpolicy/standard/enforce/validate-existing-with-precondition",
+    "validate/clusterpolicy/standard/psa/seccomp-latest-check-no-exclusion",
+    "validate/clusterpolicy/standard/psa/test-deletion-request",
+    "validate/clusterpolicy/standard/psa/test-exclusion-capabilities",
+    "validate/clusterpolicy/standard/psa/test-exclusion-host-namespaces",
+    "validate/clusterpolicy/standard/psa/test-exclusion-host-ports",
+    "validate/clusterpolicy/standard/psa/test-exclusion-hostpath-volume",
+    "validate/clusterpolicy/standard/psa/test-exclusion-hostprocesses",
+    "validate/clusterpolicy/standard/psa/test-exclusion-privileged-containers",
+    "validate/clusterpolicy/standard/psa/test-exclusion-restricted-capabilities",
+    "validate/clusterpolicy/standard/psa/test-exclusion-restricted-seccomp",
+    "validate/clusterpolicy/standard/psa/test-exclusion-running-as-nonroot",
+    "validate/clusterpolicy/standard/psa/test-exclusion-running-as-nonroot-user",
+    "validate/clusterpolicy/standard/psa/test-exclusion-seccomp",
+    "validate/clusterpolicy/standard/psa/test-exclusion-selinux",
+    "validate/clusterpolicy/standard/psa/test-exclusion-sysctls",
+    "validate/clusterpolicy/standard/psa/test-exclusion-volume-types",
+    "validate/e2e/adding-key-to-config-map",
+    "validate/e2e/adding-key-to-config-map-deprecated",
+    "validate/e2e/global-anchor-deprecated",
+    "validate/e2e/lowercase-kind-crd",
+    "validate/e2e/lowercase-kind-crd-deprecated",
+    "validate/e2e/old-object-exists",
+    "validate/e2e/old-object-exists-deprecated",
+    "validate/e2e/x509-decode",
+    "validate/e2e/x509-decode-deprecated",
+    "validate/e2e/yaml-signing",
+    "validate/e2e/yaml-signing-deprecated",
+    "generating-policies/data/nosync/generate-cm",
+    "generating-policies/data/nosync/generate-on-trigger-deletion",
+    "generating-policies/data/nosync/nosync-delete-downstream",
+    "generating-policies/data/nosync/nosync-delete-policy",
+    "generating-policies/data/nosync/nosync-modify-downstream",
+    "generating-policies/data/nosync/nosync-modify-policy",
+    "mutating-policies/autogen/polex",
+    "validating-policies/context/configmap",
+    "validating-policies/context/globalreference",
+    "validating-policies/context/globalreference-missing-graceful",
+    "validating-policies/context/imagereference",
+    "validating-policies/context/json",
+    "validating-policies/context/parse-sa",
+    "validating-policies/context/userinfo",
+    "validating-policies/validation-actions/deny",
+    "validating-policies/validation-actions/none",
+    "validating-policies/validation-actions/warn",
+    "namespaced-validating-policies/validation-actions/audit",
+    "policy-validation/policy/admission-disabled",
+    "policy-validation/policy/all-disabled",
+    "policy-validation/policy/assert",
+    "policy-validation/policy/invalid-timeout",
+    "validating-admission-policy-reports/background/validating-admission-policy-fail",
+    "validating-admission-policy-reports/background/validating-admission-policy-pass",
+    "validating-admission-policy-reports/background/with-validating-admission-policy-binding-fail",
+    "validating-admission-policy-reports/background/with-validating-admission-policy-binding-no-reports",
+    "validating-admission-policy-reports/background/with-validating-admission-policy-binding-pass",
+    "mutate/cascading/first-rule-is-foreach",
+    "mutate/cascading/no-foreach",
+    "mutate/cascading/two-foreach-rules",
+    "mutate/clusterpolicy/cornercases/cascading-mutation",
+    "mutate/clusterpolicy/cornercases/defaulting-namespace-labels",
+    "mutate/clusterpolicy/cornercases/jmespath-with-special-chars",
+    "mutate/clusterpolicy/cornercases/mutate-using-default-context",
+    "mutate/clusterpolicy/cornercases/trigger-name-exceeds-63-characters",
+    "mutate/clusterpolicy/cornercases/variables-mutate-existing",
+    "mutate/clusterpolicy/cornercases/variables-mutate-existing-deprecated",
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/basic-create-policy",
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/basic-create-policy(deprecated)",
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/different-configurations-for-mutate-existing",
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/different-mutate-existing-values",
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/namespaceselector",
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/namespaceselector(deprecated)",
+    "mutate/clusterpolicy/standard/existing/validation/mutate-existing-require-targets",
+    "mutate/clusterpolicy/standard/existing/validation/mutate-existing-require-targets(deprecated)",
+    "mutate/clusterpolicy/standard/existing/validation/target-variable-validation",
+    "mutate/clusterpolicy/standard/existing/validation/target-variable-validation(deprecated)",
+    "mutate/policy/cornercases/foreach-remove-elements",
+    "mutate/policy/standard/existing/validation/auth-check",
+    "mutate/refactor/foreach/add-and-remove",
+    "mutate/refactor/foreach/remove-and-add",
+    "mutate/refactor/foreach/remove-multiple-elements-in-ascending-order",
+    "mutate/refactor/foreach/remove-multiple-elements-in-descending-order",
+    "mutate/refactor/k10-minimum-retention",
+    "mutate/refactor/nested-foreach/remove-all-env-vars",
+    "mutate/refactor/simple/remove-multiple-elements-in-ascending-order",
+    "mutate/refactor/simple/remove-multiple-elements-in-descending-order",
+    "generate/clusterpolicy/cornercases/clone-list-sync-same-trigger-source-delete-source",
+    "generate/clusterpolicy/cornercases/clone-list-sync-same-trigger-source-update-source",
+    "generate/clusterpolicy/cornercases/clone-role-and-rolebinding",
+    "generate/clusterpolicy/cornercases/clone-source-managed-by-label-helm",
+    "generate/clusterpolicy/cornercases/clone-source-name-exceeds-63-characters",
+    "generate/clusterpolicy/cornercases/clone-sync-same-trigger-source-delete-source",
+    "generate/clusterpolicy/cornercases/clone-sync-same-trigger-source-update-source",
+    "generate/clusterpolicy/cornercases/cpol-clone-create-on-trigger-deletion",
+    "generate/clusterpolicy/cornercases/cpol-clone-delete-ownerreferences-across-namespaces",
+    "generate/clusterpolicy/cornercases/cpol-clone-delete-ownerreferences-across-namespaces-deprecated",
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-create-source-after-policy",
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-reinstall-policy",
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-reinstall-policy-deprecated",
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-single-source-multiple-triggers-targets",
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-single-source-multiple-triggers-targets-deprecated",
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-single-trigger-source-multiple-targets",
+    "generate/clusterpolicy/cornercases/cpol-data-create-on-trigger-deletion",
+    "generate/clusterpolicy/cornercases/cpol-data-sync-create-upon-generated-resource",
+    "generate/clusterpolicy/cornercases/cpol-data-sync-no-creation-upon-generated-resource",
+    "generate/clusterpolicy/cornercases/cpol-data-sync-remove-list-element",
+    "generate/clusterpolicy/cornercases/cpol-data-sync-to-nosync-delete-rule",
+    "generate/clusterpolicy/cornercases/cpol-data-sync-to-nosync-delete-rule-deprecated",
+    "generate/clusterpolicy/cornercases/cpol-data-trigger-not-present",
+    "generate/clusterpolicy/cornercases/data-role-and-rolebinding",
+    "generate/clusterpolicy/cornercases/generate-event-upon-edit",
+    "generate/clusterpolicy/cornercases/pod-restart-on-cm-update",
+    "generate/clusterpolicy/cornercases/pod-restart-on-cm-update-deprecated",
+    "generate/clusterpolicy/cornercases/trigger-resource-name-exceeds-63-characters",
+    "generate/clusterpolicy/standard/clone/multiple/sync/basic-create",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-create",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-create-deprecated",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-delete-source",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-update-deprecated",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-update-source",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-create",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-downstream",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-policy",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-rule",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-source",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-trigger",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-existing-update-trigger-no-precondition",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-existing-update-trigger-no-precondition-deprecated",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-downstream",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-downstream-apply",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-source",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-no-existing-update-trigger-no-precondition",
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-update-trigger-no-match",
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-downstream",
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-policy",
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-rule",
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-modify-downstream",
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-modify-rule",
+    "generate/clusterpolicy/standard/existing-deprecated/existing-basic-add-rule-data",
+    "generate/clusterpolicy/standard/existing-deprecated/existing-basic-create-policy-data",
+    "generate/clusterpolicy/standard/existing-deprecated/existing-basic-create-policy-preconditions-data",
+    "generate/clusterpolicy/standard/existing/different-configurations-for-generate-existing",
+    "generate/clusterpolicy/standard/existing/different-generate-existing-values",
+    "generate/clusterpolicy/standard/existing/different-generate-existing-values-reorder",
+    "generate/clusterpolicy/standard/existing/existing-basic-add-rule-data",
+    "generate/clusterpolicy/standard/existing/existing-basic-create-policy-data",
+    "generate/clusterpolicy/standard/existing/existing-basic-create-policy-preconditions-data",
+    "generate/clusterpolicy/standard/existing/existing-with-wildcard-name-matching",
+    "generate/foreach/clusterpolicy/data/sync/cpol-data-sync-create",
+    "generate/foreach/clusterpolicy/data/sync/cpol-data-sync-delete-policy",
+    "generate/foreach/clusterpolicy/data/sync/cpol-data-sync-update-policy",
+    "generate/foreach/clusterpolicy/data/sync/cpol-data-sync-update-target",
+    "generate/foreach/existing/cpol-clone-list-sync-create",
+    "generate/foreach/existing/cpol-clone-sync-create",
+    "generate/foreach/existing/cpol-data-sync-create",
+    "generate/policy/cornercases/pol-clone-create-on-trigger-deletion",
+    "generate/policy/cornercases/pol-clone-sync-create-source-after-policy",
+    "generate/policy/cornercases/pol-data-create-on-trigger-deletion",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-create",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-downstream",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-policy",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-rule",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-source",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-trigger",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-invalid",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-modify-downstream",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-modify-source",
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-update-trigger-no-match",
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-downstream",
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-policy",
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-rule",
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-source",
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-trigger",
+    "generate/policy/standard/clone/sync/pol-clone-sync-invalid",
+    "generate/policy/standard/clone/sync/pol-clone-sync-modify-downstream",
+    "generate/policy/standard/clone/sync/pol-clone-sync-modify-source",
+    "generate/policy/standard/clone/sync/pol-clone-sync-update-trigger-no-match",
+    "generate/policy/standard/data/nosync/pol-data-nosync-create-policy-invalid",
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-downstream",
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-policy",
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-rule",
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-rule-deprecated",
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-trigger",
+    "generate/policy/standard/data/nosync/pol-data-nosync-modify-downstream",
+    "generate/policy/standard/data/nosync/pol-data-nosync-modify-rule",
+    "generate/policy/standard/data/nosync/pol-data-nosync-update-trigger-no-match",
+    "generate/policy/standard/existing/match-trigger-namespace",
+    "generate/policy/standard/existing/match-trigger-namespace-deprecated",
+    "generate/policy/standard/existing/non-match-trigger-namespace",
+    "generate/policy/standard/existing/non-match-trigger-namespace-deprecated",
+    "generate/validation/clusterpolicy/permissions/no-permission",
+    "generate/validation/clusterpolicy/permissions/same-kind",
+    "generate/validation/policy/cloneList",
+    "generate/validation/policy/immutable-rule-spec",
+    "generate/validation/policy/permissions",
+    "generate/validation/policy/prevent-loop",
+    "generate/validation/policy/target-namespace-scope",
+    "generate/validation/policy/use-generate-existing-on-policy-update",
+    "generate/validation/policy/warn-clone-change",
+    "generate/validation/policy/warn-clonelist-change",
+    "generate/validation/policy/warn-downstream-change",
+    "validate/clusterpolicy/best-practices/disallow-latest-tag",
+    "validate/clusterpolicy/standard/apicalls-deprecated/lazyload",
+    "validate/clusterpolicy/standard/apicalls-deprecated/subjectaccessreview",
+    "validate/clusterpolicy/standard/apicalls/default",
+    "validate/clusterpolicy/standard/apicalls/lazyload",
+    "validate/clusterpolicy/standard/apicalls/subjectaccessreview",
+    "validate/clusterpolicy/standard/audit-deprecated/background-match-clusterRoles",
+    "validate/clusterpolicy/standard/audit-deprecated/background-match-roles",
+    "validate/clusterpolicy/standard/audit-deprecated/background-vars-roles",
+    "validate/clusterpolicy/standard/audit-deprecated/background-vars-serviceAccountName",
+    "validate/clusterpolicy/standard/audit-deprecated/background-vars-userInfo",
+    "validate/clusterpolicy/standard/audit-deprecated/configmap-context-lookup",
+    "validate/clusterpolicy/standard/audit/background-match-clusterRoles",
+    "validate/clusterpolicy/standard/audit/background-match-roles",
+    "validate/clusterpolicy/standard/audit/background-vars-roles",
+    "validate/clusterpolicy/standard/audit/background-vars-serviceAccountName",
+    "validate/clusterpolicy/standard/audit/background-vars-userInfo",
+    "validate/clusterpolicy/standard/audit/configmap-context-lookup",
+    "validate/clusterpolicy/standard/cel-deprecated/cel-preconditions",
+    "validate/clusterpolicy/standard/cel-deprecated/cel-variables",
+    "validate/clusterpolicy/standard/cel-deprecated/check-statefulset-namespace",
+    "validate/clusterpolicy/standard/cel-deprecated/disallow-host-port",
+    "validate/clusterpolicy/standard/cel-deprecated/parameter-resources/clusterscoped",
+    "validate/clusterpolicy/standard/cel/cel-preconditions",
+    "validate/clusterpolicy/standard/cel/cel-variables",
+    "validate/clusterpolicy/standard/cel/check-statefulset-namespace",
+    "validate/clusterpolicy/standard/cel/deny",
+    "validate/clusterpolicy/standard/cel/disallow-host-port",
+    "validate/clusterpolicy/standard/cel/parameter-resources/clusterscoped",
+    "validate/clusterpolicy/standard/cel/subreource",
+    "validate/clusterpolicy/standard/debug-deprecated/with-pod",
+    "validate/clusterpolicy/standard/debug-deprecated/with-subresource",
+    "validate/clusterpolicy/standard/debug-deprecated/with-wildcard",
+    "validate/clusterpolicy/standard/debug/with-pod",
+    "validate/clusterpolicy/standard/debug/with-subresource",
+    "validate/clusterpolicy/standard/debug/with-wildcard",
+    "validate/clusterpolicy/standard/enforce-deprecated/api-initiated-pod-eviction",
+    "validate/clusterpolicy/standard/enforce-deprecated/block-pod-exec-requests",
+    "validate/clusterpolicy/standard/enforce-deprecated/bypass-with-policy-exception",
+    "validate/clusterpolicy/standard/enforce-deprecated/csr",
+    "validate/clusterpolicy/standard/enforce-deprecated/enforce-validate-existing",
+    "validate/clusterpolicy/standard/enforce-deprecated/failure-policy-ignore-anchor",
+    "validate/clusterpolicy/standard/enforce-deprecated/ns-selector-with-wildcard-kind",
+    "validate/clusterpolicy/standard/enforce-deprecated/operator-allnotin-01",
+    "validate/clusterpolicy/standard/enforce-deprecated/operator-anyin-boolean",
+    "validate/clusterpolicy/standard/enforce-deprecated/resource-apply-block",
+    "validate/clusterpolicy/standard/enforce-deprecated/scaling-with-kubectl-scale",
+    "validate/clusterpolicy/standard/exclude/exclude-namespace",
+    "validate/clusterpolicy/standard/exclude/exclude-namespace(deprecated)",
+    "validate/clusterpolicy/standard/operations/only-update",
+    "validate/clusterpolicy/standard/operations/only-update(deprecated)",
+    "validate/clusterpolicy/standard/variables/lazyload/conditions",
+    "validate/clusterpolicy/standard/variables/lazyload/conditions-deprecated",
+    "validate/clusterpolicy/standard/wildcard/block-verifyimage",
+    "validate/clusterpolicy/standard/wildcard/block-verifyimage-deprecated",
+    "generating-policies/clone/nosync/generate-on-trigger-deletion",
+    "generating-policies/clone/nosync/generate-secrets",
+    "generating-policies/clone/nosync/generate-secrets-and-networkpolicies",
+    "generating-policies/clone/nosync/nosync-create",
+    "generating-policies/clone/nosync/nosync-delete-downstream",
+    "generating-policies/clone/nosync/nosync-delete-policy",
+    "generating-policies/clone/nosync/nosync-delete-source",
+    "generating-policies/clone/nosync/nosync-delete-trigger",
+    "generating-policies/clone/nosync/nosync-modify-downstream",
+    "generating-policies/clone/nosync/nosync-modify-source",
+    "generating-policies/clone/sync/sync-delete-source",
+    "generating-policies/clone/sync/sync-delete-trigger",
+    "generating-policies/clone/sync/sync-modify-one-source",
+    "generating-policies/clone/sync/sync-modify-policy-to-change-source",
+    "generating-policies/clone/sync/sync-modify-source",
+    "generating-policies/clone/sync/sync-modify-trigger",
+    "generating-policies/clone/sync/update-policy-to-disable-sync",
+    "generating-policies/context/globalcontextentry",
+    "generating-policies/data/sync/sync-delete-one-trigger",
+    "generating-policies/data/sync/sync-delete-policy-with-orphan-downstream",
+    "generating-policies/data/sync/sync-delete-policy-without-orphan-downstream",
+    "generating-policies/data/sync/sync-modify-policy-and-downstream-another-kind",
+    "generating-policies/data/sync/sync-modify-policy-and-downstream-data",
+    "generating-policies/data/sync/sync-modify-policy-and-downstream-name",
+    "generating-policies/exceptions/allowed-images",
+    "generating-policies/exceptions/clone-generate-secrets",
+    "generating-policies/exceptions/data-generate-cm",
+    "generating-policies/existing/basic-generate-clone",
+    "generating-policies/existing/basic-generate-data",
+    "generating-policies/existing/basic-generate-with-name-matching",
+    "generating-policies/existing/basic-generate-with-ns-selector",
+    "generating-policies/existing/basic-generate-with-obj-selector",
+    "generating-policies/matchconditions/cel-libs",
+    "generating-policies/validate/invalid-cel-expression",
+    "generating-policies/validate/missing-generate",
+    "generating-policies/validate/missing-match-constraints",
+    "mutating-policies/admission/applyconfiguration",
+    "mutating-policies/admission/jsonpatch",
+    "mutating-policies/admission/multiple-policies-chaining",
+    "mutating-policies/context/globalcontextentry",
+    "mutating-policies/context/image",
+    "mutating-policies/context/resource/get",
+    "mutating-policies/context/resource/match-conditions",
+    "mutating-policies/context/userinfo/admission",
+    "mutating-policies/exceptions/exclude-images",
+    "mutating-policies/exceptions/regular",
+    "mutating-policies/existing/different-trigger-target",
+    "mutating-policies/existing/expression/get",
+    "mutating-policies/existing/expression/list",
+    "mutating-policies/existing/same-trigger-target",
+    "mutating-policies/matchconditions/cel-libs",
+    "mutating-policies/reporting/admission",
+    "mutating-policies/reporting/events-violation",
+    "mutating-policies/reporting/existing-admission-flow",
+    "mutating-policies/reporting/standard-background-policy-creation",
+    "mutating-policies/reporting/with-exception-pass-result",
+    "mutating-policies/reporting/with-exception-skip-result",
+    "mutating-policies/reporting/with-exceptions",
+    "validating-policies/autogen/autogen-deployments-cronjobs",
+    "validating-policies/autogen/autogen-deployments-statefulsets",
+    "validating-policies/autogen/none",
+    "validating-policies/autogen/should-autogen",
+    "validating-policies/autogen/should-not-autogen",
+    "validating-policies/context/resource/get",
+    "validating-policies/context/resource/post",
+    "validating-policies/exceptions/allow-specific-values",
+    "validating-policies/exceptions/autogen",
+    "validating-policies/exceptions/empty-policy-ref",
+    "validating-policies/exceptions/exclude-deployments",
+    "validating-policies/exceptions/exclude-images",
+    "validating-policies/exceptions/exclude-images-autogen",
+    "validating-policies/exceptions/exclude-images-multiple-cel",
+    "validating-policies/exceptions/regular",
+    "validating-policies/exceptions/wrong-exception",
+    "validating-policies/match-conditions/cel-libs",
+    "validating-policies/match-conditions/failure-policy/default",
+    "validating-policies/match-conditions/failure-policy/fail",
+    "validating-policies/match-conditions/failure-policy/ignore",
+    "validating-policies/report/background/globalcontextentry",
+    "validating-policies/report/background/standard",
+    "validating-policies/validation-checks/invalid-action",
+    "validating-policies/validation-checks/missing-match-constraints",
+    "validating-policies/validation-rules/accept",
+    "validating-policies/validation-rules/reject",
+    "validating-policies/validation-rules/with-match-conditions",
+    "background-only/cluster-policy/no-admission-event",
+    "background-only/cluster-policy/no-admission-event-deprecated",
+    "background-only/cluster-policy/no-admission-report",
+    "background-only/cluster-policy/no-admission-report-deprecated",
+    "background-only/cluster-policy/not-rejected",
+    "background-only/cluster-policy/not-rejected-deprecated",
+    "reports/background/exception",
+    "reports/background/exception-assert",
+    "reports/background/exception-with-conditions",
+    "reports/background/exception-with-podsecurity",
+    "reports/background/generate",
+    "reports/background/multiple-exceptions-with-pod-security",
+    "reports/background/mutate-existing",
+    "reports/background/report-deletion",
+    "reports/background/test-report-background-mode",
+    "reports/background/test-reporting-exclusion",
+    "reports/background/two-rules-with-different-modes",
+    "reports/background/validating-admission-policy-exclude",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/block-ephemeral-containers",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-all-match-resource",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-exclude-namespace-match-resource",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-exclude-resource",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-exclude-resource-match-with-namespace-selector",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-exclude-resource-match-with-object-selector",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-match-multiple-resources",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-match-resource",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-match-resources-by-names",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-match-all-exclude-one",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-match-kind-with-wildcard",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-match-resource-in-specific-namespace",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-with-an-exception",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-with-an-exception-excluding-namespaces",
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-with-two-exceptions",
+    "generate-validating-admission-policy/validatingpolicy/check-deployment-labels",
+    "generate-validating-admission-policy/validatingpolicy/missing-action",
+    "generate-validating-admission-policy/validatingpolicy/with-cel-exception",
+    "generate-validating-admission-policy/validatingpolicy/with-finegrained-exception",
+    "generate-validating-admission-policy/validatingpolicy/with-multiple-exceptions",
+    "namespaced-validating-policies/context/image-data",
+    "namespaced-validating-policies/match-conditions/failure-policy/default",
+    "namespaced-validating-policies/validation-rules/accept",
+    "namespaced-validating-policies/validation-rules/reject",
+    "policy-validation/cluster-policy/admission-disabled",
+    "policy-validation/cluster-policy/all-disabled",
+    "policy-validation/cluster-policy/assert",
+    "policy-validation/cluster-policy/background-variables-update",
+    "policy-validation/cluster-policy/cel-expressions",
+    "policy-validation/cluster-policy/cel-preconditions",
+    "policy-validation/cluster-policy/deprecated-operations",
+    "policy-validation/cluster-policy/invalid-pod-security-exceptions",
+    "policy-validation/cluster-policy/invalid-pod-security-rule",
+    "policy-validation/cluster-policy/invalid-subject-kind",
+    "policy-validation/cluster-policy/invalid-timeout",
+    "policy-validation/cluster-policy/invalid-timeout-deprecated",
+    "policy-validation/cluster-policy/policy-exceptions-disabled",
+    "policy-validation/cluster-policy/schema-validation-crd",
+    "policy-validation/cluster-policy/success",
+    "policy-validation/cluster-policy/target-context",
+    "validating-admission-policy-reports/events",
+    "assert/allow-existing-violations",
+    "assert/old-object-exists",
+    "autogen/assert-autogen",
+    "autogen/cel-preconditions",
+    "autogen/conditions",
+    "autogen/conditions-deprecated",
+    "autogen/deployment-cronjob",
+    "autogen/deployment-cronjob-deprecated",
+    "autogen/deployment-statefulset-job",
+    "autogen/foreach-jsonpatch",
+    "autogen/none",
+    "autogen/none-deprecated",
+    "autogen/only-cronjob",
+    "autogen/only-deployment",
+    "autogen/restrict-image-registries",
+    "autogen/should-autogen",
+    "autogen/should-autogen-deprecated",
+    "autogen/should-not-autogen",
+    "autogen/should-not-autogen-deprecated",
+    "deferred/dependencies",
+    "deferred/dependencies-deprecated",
+    "deferred/foreach",
+    "deferred/recursive",
+    "deferred/resolve-overriden-variable",
+    "deferred/two-rules",
+    "events/clusterpolicy/generate-events-upon-fail-generation",
+    "events/clusterpolicy/generate-events-upon-successful-generation",
+    "events/clusterpolicy/generate-events-upon-successful-mutation",
+    "events/clusterpolicy/no-events-upon-skip-generation",
+    "events/clusterpolicy/success-event-actions",
+    "events/mutating-policy/generate-events-upon-successful-mutation",
+    "events/policy/policy-applied",
+    "events/policy/policy-applied-deprecated",
+    "events/policy/policy-violation",
+    "events/policy/policy-violation-deprecated",
+    "exceptions/allows-rejects-creation",
+    "exceptions/applies-to-delete",
+    "exceptions/background-mode/standard",
+    "exceptions/conditions",
+    "exceptions/events-creation",
+    "exceptions/exclude-capabilities",
+    "exceptions/exclude-ephemeral-containers",
+    "exceptions/exclude-host-ports",
+    "exceptions/exclude-host-process-and-host-namespaces",
+    "exceptions/exclude-hostpath-volume",
+    "exceptions/exclude-privilege-escalation",
+    "exceptions/exclude-privileged-containers",
+    "exceptions/exclude-restricted-capabilities",
+    "exceptions/exclude-restricted-seccomp",
+    "exceptions/exclude-running-as-nonroot",
+    "exceptions/exclude-running-as-nonroot-user",
+    "exceptions/exclude-seccomp",
+    "exceptions/exclude-selinux",
+    "exceptions/exclude-sysctls",
+    "exceptions/exclude-volume-types",
+    "exceptions/good-bad-conditions",
+    "exceptions/multiple-exceptions",
+    "exceptions/multiple-exceptions-with-pod-security",
+    "exceptions/namespace-selector",
+    "exceptions/only-for-specific-user",
+    "exceptions/psa-run-as-non-root",
+    "exceptions/with-wildcard",
+    "filter/exclude/sa/no-wildcard",
+    "filter/exclude/sa/wildcard",
+    "filter/exclude/user/no-wildcard/block",
+    "filter/exclude/user/no-wildcard/pass",
+    "filter/exclude/user/wildcard/block",
+    "filter/exclude/user/wildcard/pass",
+    "filter/match/sa/no-wildcard",
+    "filter/match/sa/wildcard",
+    "filter/match/user/no-wildcard/block",
+    "filter/match/user/no-wildcard/pass",
+    "filter/match/user/wildcard/block",
+    "filter/match/user/wildcard/pass",
+    "force-failure-policy-ignore/mutating-policy/fail",
+    "globalcontext/apicall-correct",
+    "globalcontext/apicall-correct-projection",
+    "globalcontext/apicall-failed",
+    "globalcontext/gctxentry-not-exist",
+    "globalcontext/resource-correct",
+    "globalcontext/resource-correct-projection",
+    "globalcontext/validate-apicall-data",
+    "globalcontext/validate-crd",
+    "globalcontext/validate-reference",
+    "image-validating-policies/autogen/none",
+    "image-validating-policies/autogen/should-autogen",
+    "image-validating-policies/context/resource",
+    "image-validating-policies/validation-checks/invalid-action",
+    "mutating-admission-policy-reports/background/mutating-admission-policy-exclude",
+    "mutating-admission-policy-reports/background/with-binding-fail",
+    "mutating-admission-policy-reports/background/with-binding-pass",
+    "namespaced-generating-policies/data/cross-namespace-denied",
+    "namespaced-generating-policies/data/generate-cm",
+    "namespaced-image-validating-policies/autogen/should-autogen",
+    "namespaced-image-validating-policies/context/image-data",
+    "namespaced-mutating-policies/admission/jsonpatch",
+    "policy-exceptions-disabled/validating-policies",
+    "rangeoperators/standard",
+    "rbac/aggregate-to-admin",
+    "rbac/mutate-policy-with-clusterrole",
+    "verify-manifests/multi-signatures",
+    "verify-manifests/multi-signatures(deprecated)",
+    "verify-manifests/single-signature",
+    "verify-manifests/single-signature(deprecated)",
+    "webhook-configurations/cpol-match-conditions-block",
+    "webhook-configurations/cpol-match-conditions-pass",
+    "webhook-configurations/match-conditions-fail",
+    "webhook-configurations/match-conditions-standard",
+    "webhook-configurations/match-conditions-userinfo",
+    "webhook-configurations/webhook-registeration"
+  ],
+  "scores": {
+    "assert/allow-existing-violations": [
+      0,
+      0,
+      0
+    ],
+    "assert/old-object-exists": [
+      0,
+      0,
+      0
+    ],
+    "autogen/assert-autogen": [
+      0,
+      0,
+      0
+    ],
+    "autogen/cel-preconditions": [
+      0,
+      0,
+      0
+    ],
+    "autogen/conditions": [
+      0,
+      0,
+      0
+    ],
+    "autogen/conditions-deprecated": [
+      0,
+      0,
+      0
+    ],
+    "autogen/deployment-cronjob": [
+      0,
+      0,
+      0
+    ],
+    "autogen/deployment-cronjob-deprecated": [
+      0,
+      0,
+      0
+    ],
+    "autogen/deployment-statefulset-job": [
+      0,
+      0,
+      0
+    ],
+    "autogen/foreach-jsonpatch": [
+      0,
+      0,
+      0
+    ],
+    "autogen/none": [
+      0,
+      0,
+      0
+    ],
+    "autogen/none-deprecated": [
+      0,
+      0,
+      0
+    ],
+    "autogen/only-cronjob": [
+      0,
+      0,
+      0
+    ],
+    "autogen/only-deployment": [
+      0,
+      0,
+      0
+    ],
+    "autogen/restrict-image-registries": [
+      0,
+      0,
+      0
+    ],
+    "autogen/should-autogen": [
+      0,
+      0,
+      0
+    ],
+    "autogen/should-autogen-deprecated": [
+      0,
+      0,
+      0
+    ],
+    "autogen/should-not-autogen": [
+      0,
+      0,
+      0
+    ],
+    "autogen/should-not-autogen-deprecated": [
+      0,
+      0,
+      0
+    ],
+    "background-only/cluster-policy/no-admission-event": [
+      0,
+      0,
+      2
+    ],
+    "background-only/cluster-policy/no-admission-event-deprecated": [
+      0,
+      0,
+      2
+    ],
+    "background-only/cluster-policy/no-admission-report": [
+      0,
+      0,
+      2
+    ],
+    "background-only/cluster-policy/no-admission-report-deprecated": [
+      0,
+      0,
+      2
+    ],
+    "background-only/cluster-policy/not-rejected": [
+      0,
+      0,
+      2
+    ],
+    "background-only/cluster-policy/not-rejected-deprecated": [
+      0,
+      0,
+      2
+    ],
+    "background-only/policy/no-admission-event": [
+      0,
+      2,
+      2
+    ],
+    "background-only/policy/no-admission-event-deprecated": [
+      0,
+      2,
+      2
+    ],
+    "background-only/policy/not-rejected": [
+      0,
+      2,
+      2
+    ],
+    "background-only/policy/not-rejected-deprecated": [
+      0,
+      2,
+      2
+    ],
+    "deferred/dependencies": [
+      0,
+      0,
+      0
+    ],
+    "deferred/dependencies-deprecated": [
+      0,
+      0,
+      0
+    ],
+    "deferred/foreach": [
+      0,
+      0,
+      0
+    ],
+    "deferred/recursive": [
+      0,
+      0,
+      0
+    ],
+    "deferred/resolve-overriden-variable": [
+      0,
+      0,
+      0
+    ],
+    "deferred/two-rules": [
+      0,
+      0,
+      0
+    ],
+    "events/clusterpolicy/generate-events-upon-fail-generation": [
+      0,
+      0,
+      0
+    ],
+    "events/clusterpolicy/generate-events-upon-successful-generation": [
+      0,
+      0,
+      0
+    ],
+    "events/clusterpolicy/generate-events-upon-successful-mutation": [
+      0,
+      0,
+      0
+    ],
+    "events/clusterpolicy/no-events-upon-skip-generation": [
+      0,
+      0,
+      0
+    ],
+    "events/clusterpolicy/success-event-actions": [
+      0,
+      0,
+      0
+    ],
+    "events/mutating-policy/generate-events-upon-successful-mutation": [
+      0,
+      0,
+      0
+    ],
+    "events/policy/policy-applied": [
+      0,
+      0,
+      0
+    ],
+    "events/policy/policy-applied-deprecated": [
+      0,
+      0,
+      0
+    ],
+    "events/policy/policy-violation": [
+      0,
+      0,
+      0
+    ],
+    "events/policy/policy-violation-deprecated": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/allows-rejects-creation": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/applies-to-delete": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/background-mode/standard": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/conditions": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/events-creation": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-capabilities": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-ephemeral-containers": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-host-ports": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-host-process-and-host-namespaces": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-hostpath-volume": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-privilege-escalation": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-privileged-containers": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-restricted-capabilities": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-restricted-seccomp": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-running-as-nonroot": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-running-as-nonroot-user": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-seccomp": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-selinux": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-sysctls": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/exclude-volume-types": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/good-bad-conditions": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/multiple-exceptions": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/multiple-exceptions-with-pod-security": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/namespace-selector": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/only-for-specific-user": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/psa-run-as-non-root": [
+      0,
+      0,
+      0
+    ],
+    "exceptions/with-wildcard": [
+      0,
+      0,
+      0
+    ],
+    "filter/exclude/sa/no-wildcard": [
+      0,
+      0,
+      0
+    ],
+    "filter/exclude/sa/wildcard": [
+      0,
+      0,
+      0
+    ],
+    "filter/exclude/user/no-wildcard/block": [
+      0,
+      0,
+      0
+    ],
+    "filter/exclude/user/no-wildcard/pass": [
+      0,
+      0,
+      0
+    ],
+    "filter/exclude/user/wildcard/block": [
+      0,
+      0,
+      0
+    ],
+    "filter/exclude/user/wildcard/pass": [
+      0,
+      0,
+      0
+    ],
+    "filter/match/sa/no-wildcard": [
+      0,
+      0,
+      0
+    ],
+    "filter/match/sa/wildcard": [
+      0,
+      0,
+      0
+    ],
+    "filter/match/user/no-wildcard/block": [
+      0,
+      0,
+      0
+    ],
+    "filter/match/user/no-wildcard/pass": [
+      0,
+      0,
+      0
+    ],
+    "filter/match/user/wildcard/block": [
+      0,
+      0,
+      0
+    ],
+    "filter/match/user/wildcard/pass": [
+      0,
+      0,
+      0
+    ],
+    "force-failure-policy-ignore/mutating-policy/fail": [
+      0,
+      0,
+      0
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/block-ephemeral-containers": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-all-match-resource": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-exclude-namespace-match-resource": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-exclude-resource": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-exclude-resource-match-with-namespace-selector": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-exclude-resource-match-with-object-selector": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-match-multiple-resources": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-match-resource": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-any-match-resources-by-names": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-match-all-exclude-one": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-match-kind-with-wildcard": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-match-resource-in-specific-namespace": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-with-an-exception": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-with-an-exception-excluding-namespaces": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/clusterpolicy/standard/generate/cpol-with-two-exceptions": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/validatingpolicy/check-deployment-labels": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/validatingpolicy/missing-action": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/validatingpolicy/with-cel-exception": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/validatingpolicy/with-finegrained-exception": [
+      0,
+      0,
+      1
+    ],
+    "generate-validating-admission-policy/validatingpolicy/with-multiple-exceptions": [
+      0,
+      0,
+      1
+    ],
+    "generate/clusterpolicy/cornercases/clone-list-sync-same-trigger-source-delete-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/clone-list-sync-same-trigger-source-update-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/clone-role-and-rolebinding": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/clone-source-managed-by-label-helm": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/clone-source-name-exceeds-63-characters": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/clone-sync-same-trigger-source-delete-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/clone-sync-same-trigger-source-update-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-create-on-trigger-deletion": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-delete-ownerreferences-across-namespaces": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-delete-ownerreferences-across-namespaces-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-create-source-after-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-reinstall-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-reinstall-policy-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-single-source-multiple-triggers-targets": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-single-source-multiple-triggers-targets-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-clone-sync-single-trigger-source-multiple-targets": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-data-create-on-trigger-deletion": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-data-sync-create-upon-generated-resource": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-data-sync-no-creation-upon-generated-resource": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-data-sync-remove-list-element": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-data-sync-to-nosync-delete-rule": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-data-sync-to-nosync-delete-rule-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/cpol-data-trigger-not-present": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/data-role-and-rolebinding": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/generate-event-upon-edit": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/pod-restart-on-cm-update": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/pod-restart-on-cm-update-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/cornercases/trigger-resource-name-exceeds-63-characters": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/multiple/sync/basic-create": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-create": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-downstream": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-policy": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-rule": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-source": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-delete-trigger": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-modify-downstream": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-update-trigger-no-match": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-create": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-create-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-delete-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-update-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-list-sync-update-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-create": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-rule": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-delete-trigger": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-existing-update-trigger-no-precondition": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-existing-update-trigger-no-precondition-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-downstream-apply": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-modify-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-no-existing-update-trigger-no-precondition": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/clone/sync/cpol-clone-sync-update-trigger-no-match": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-delete-rule": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-modify-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync-deprecated/cpol-data-nosync-modify-rule": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-downstream": [
+      0,
+      6,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-policy": [
+      0,
+      6,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-rule": [
+      0,
+      6,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-delete-trigger": [
+      0,
+      6,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-modify-downstream": [
+      0,
+      6,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-modify-rule": [
+      0,
+      6,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/nosync/cpol-data-nosync-update-trigger-no-match": [
+      0,
+      6,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-create": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-downstream": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-policy": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-delete-rule": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-modify-downstream": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-modify-rule": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-orphan-downstream-delete-policy": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-create": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-downstream": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-one-trigger": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-policy": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-rule": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-trigger": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-downstream": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-policy": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-rule": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-mutate-and-generate": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-no-existing-update-trigger-no-precondition": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-orphan-downstream-delete-policy": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/data/sync/cpol-data-sync-update-trigger-no-match": [
+      0,
+      1,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing-deprecated/existing-basic-add-rule-data": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing-deprecated/existing-basic-create-policy-data": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing-deprecated/existing-basic-create-policy-preconditions-data": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing/different-configurations-for-generate-existing": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing/different-generate-existing-values": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing/different-generate-existing-values-reorder": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing/existing-basic-add-rule-data": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing/existing-basic-create-policy-data": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing/existing-basic-create-policy-preconditions-data": [
+      0,
+      0,
+      14
+    ],
+    "generate/clusterpolicy/standard/existing/existing-with-wildcard-name-matching": [
+      0,
+      0,
+      14
+    ],
+    "generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-delete-source": [
+      0,
+      2,
+      14
+    ],
+    "generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-update-source": [
+      0,
+      2,
+      14
+    ],
+    "generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-update-target": [
+      0,
+      2,
+      14
+    ],
+    "generate/foreach/clusterpolicy/clone/sync/cpol-clone-sync-create": [
+      0,
+      2,
+      14
+    ],
+    "generate/foreach/clusterpolicy/data/sync/cpol-data-sync-create": [
+      0,
+      0,
+      14
+    ],
+    "generate/foreach/clusterpolicy/data/sync/cpol-data-sync-delete-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/foreach/clusterpolicy/data/sync/cpol-data-sync-update-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/foreach/clusterpolicy/data/sync/cpol-data-sync-update-target": [
+      0,
+      0,
+      14
+    ],
+    "generate/foreach/existing/cpol-clone-list-sync-create": [
+      0,
+      0,
+      14
+    ],
+    "generate/foreach/existing/cpol-clone-sync-create": [
+      0,
+      0,
+      14
+    ],
+    "generate/foreach/existing/cpol-data-sync-create": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/cornercases/pol-clone-create-on-trigger-deletion": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/cornercases/pol-clone-sync-create-source-after-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/cornercases/pol-data-create-on-trigger-deletion": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-create": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-rule": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-delete-trigger": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-invalid": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-modify-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-modify-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/nosync/pol-clone-nosync-update-trigger-no-match": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-rule": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-delete-trigger": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-invalid": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-modify-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-modify-source": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/clone/sync/pol-clone-sync-update-trigger-no-match": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-create-policy-invalid": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-policy": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-rule": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-rule-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-delete-trigger": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-modify-downstream": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-modify-rule": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/nosync/pol-data-nosync-update-trigger-no-match": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-create-policy-invalid": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-create-policy-valid": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-delete-downstream": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-delete-policy": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-delete-rule": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-delete-rule-deprecated": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-delete-trigger": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-modify-rule": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-modify-rule-deprecated": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/data/sync/pol-data-sync-update-trigger-no-match": [
+      0,
+      1,
+      14
+    ],
+    "generate/policy/standard/existing/match-trigger-namespace": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/existing/match-trigger-namespace-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/existing/non-match-trigger-namespace": [
+      0,
+      0,
+      14
+    ],
+    "generate/policy/standard/existing/non-match-trigger-namespace-deprecated": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/clusterpolicy/cloneList": [
+      0,
+      2,
+      14
+    ],
+    "generate/validation/clusterpolicy/immutable-rule-spec": [
+      0,
+      2,
+      14
+    ],
+    "generate/validation/clusterpolicy/orphan": [
+      0,
+      2,
+      14
+    ],
+    "generate/validation/clusterpolicy/permissions/no-permission": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/clusterpolicy/permissions/same-kind": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/clusterpolicy/prevent-loop": [
+      0,
+      2,
+      14
+    ],
+    "generate/validation/clusterpolicy/use-generate-existing-on-policy-update": [
+      0,
+      2,
+      14
+    ],
+    "generate/validation/clusterpolicy/warn-downstream-change": [
+      0,
+      2,
+      14
+    ],
+    "generate/validation/policy/cloneList": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/policy/immutable-rule-spec": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/policy/permissions": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/policy/prevent-loop": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/policy/target-namespace-scope": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/policy/use-generate-existing-on-policy-update": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/policy/warn-clone-change": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/policy/warn-clonelist-change": [
+      0,
+      0,
+      14
+    ],
+    "generate/validation/policy/warn-downstream-change": [
+      0,
+      0,
+      14
+    ],
+    "generating-policies/clone/nosync/generate-on-trigger-deletion": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/generate-secrets": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/generate-secrets-and-networkpolicies": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/nosync-create": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/nosync-delete-downstream": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/nosync-delete-policy": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/nosync-delete-source": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/nosync-delete-trigger": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/nosync-modify-downstream": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/nosync/nosync-modify-source": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/sync/sync-delete-source": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/sync/sync-delete-trigger": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/sync/sync-modify-one-source": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/sync/sync-modify-policy-to-change-source": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/sync/sync-modify-source": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/sync/sync-modify-trigger": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/clone/sync/update-policy-to-disable-sync": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/context/globalcontextentry": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/data/nosync/generate-cm": [
+      0,
+      1,
+      8
+    ],
+    "generating-policies/data/nosync/generate-on-trigger-deletion": [
+      0,
+      1,
+      8
+    ],
+    "generating-policies/data/nosync/nosync-delete-downstream": [
+      0,
+      1,
+      8
+    ],
+    "generating-policies/data/nosync/nosync-delete-policy": [
+      0,
+      1,
+      8
+    ],
+    "generating-policies/data/nosync/nosync-modify-downstream": [
+      0,
+      1,
+      8
+    ],
+    "generating-policies/data/nosync/nosync-modify-policy": [
+      0,
+      1,
+      8
+    ],
+    "generating-policies/data/sync/sync-delete-one-trigger": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/data/sync/sync-delete-policy-with-orphan-downstream": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/data/sync/sync-delete-policy-without-orphan-downstream": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/data/sync/sync-modify-policy-and-downstream-another-kind": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/data/sync/sync-modify-policy-and-downstream-data": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/data/sync/sync-modify-policy-and-downstream-name": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/exceptions/allowed-images": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/exceptions/clone-generate-secrets": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/exceptions/data-generate-cm": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/existing/basic-generate-clone": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/existing/basic-generate-data": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/existing/basic-generate-with-name-matching": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/existing/basic-generate-with-ns-selector": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/existing/basic-generate-with-obj-selector": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/foreach/data/data-generate-nps": [
+      0,
+      3,
+      8
+    ],
+    "generating-policies/matchconditions/cel-libs": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/reports/error-generating-resource": [
+      0,
+      2,
+      8
+    ],
+    "generating-policies/reports/generate-cm": [
+      0,
+      2,
+      8
+    ],
+    "generating-policies/reports/with-exception-pass-result": [
+      0,
+      2,
+      8
+    ],
+    "generating-policies/reports/with-exceptions": [
+      0,
+      2,
+      8
+    ],
+    "generating-policies/validate/invalid-cel-expression": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/validate/missing-generate": [
+      0,
+      0,
+      8
+    ],
+    "generating-policies/validate/missing-match-constraints": [
+      0,
+      0,
+      8
+    ],
+    "globalcontext/apicall-correct": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext/apicall-correct-projection": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext/apicall-failed": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext/gctxentry-not-exist": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext/resource-correct": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext/resource-correct-projection": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext/validate-apicall-data": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext/validate-crd": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext/validate-reference": [
+      0,
+      0,
+      0
+    ],
+    "image-validating-policies/autogen/none": [
+      0,
+      0,
+      0
+    ],
+    "image-validating-policies/autogen/should-autogen": [
+      0,
+      0,
+      0
+    ],
+    "image-validating-policies/context/resource": [
+      0,
+      0,
+      0
+    ],
+    "image-validating-policies/validation-checks/invalid-action": [
+      0,
+      0,
+      0
+    ],
+    "mutate/cascading/first-rule-is-foreach": [
+      0,
+      0,
+      31
+    ],
+    "mutate/cascading/no-foreach": [
+      0,
+      0,
+      31
+    ],
+    "mutate/cascading/two-foreach-rules": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/cornercases/cascading-mutation": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/cornercases/defaulting-namespace-labels": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/cornercases/jmespath-with-special-chars": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/cornercases/mutate-using-default-context": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/cornercases/trigger-name-exceeds-63-characters": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/cornercases/variables-mutate-existing": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/cornercases/variables-mutate-existing-deprecated": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/basic-check-output": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/background-false": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/background-false(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/basic-create": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/basic-create(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/basic-create-patchesJson6902": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/basic-create-patchesJson6902(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/basic-delete": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/basic-delete(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/basic-update": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/basic-update(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/delete-trigger-namespace": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/delete-trigger-namespace(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/descending-patchJson6902": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/multiple-rules-match-exclude": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/multiple-rules-match-exclude(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/multiple-trigger-resources": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/multiple-trigger-resources(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/mutate-pod-on-binding-request": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/namespaceselector": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/namespaceselector(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/basic-create-policy": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/basic-create-policy(deprecated)": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/different-configurations-for-mutate-existing": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/different-mutate-existing-values": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/namespaceselector": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/onpolicyupdate/namespaceselector(deprecated)": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/preconditions": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/preconditions(deprecated)": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/target-context": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/target-preconditions": [
+      0,
+      14,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/validation/auth-check/cpol-namespace-variable": [
+      0,
+      1,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/validation/auth-check/cpol-namespace-variable(deprecated)": [
+      0,
+      1,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/validation/auth-check/cpol-standard-auth-check(deprecated)": [
+      0,
+      1,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/validation/mutate-existing-require-targets": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/validation/mutate-existing-require-targets(deprecated)": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/validation/target-variable-validation": [
+      0,
+      0,
+      31
+    ],
+    "mutate/clusterpolicy/standard/existing/validation/target-variable-validation(deprecated)": [
+      0,
+      0,
+      31
+    ],
+    "mutate/e2e/foreach-patchStrategicMerge-context": [
+      0,
+      1,
+      31
+    ],
+    "mutate/e2e/foreach-patchStrategicMerge-preconditions": [
+      0,
+      1,
+      31
+    ],
+    "mutate/e2e/jmespath-logic": [
+      0,
+      1,
+      31
+    ],
+    "mutate/e2e/patchStrategicMerge-global": [
+      0,
+      1,
+      31
+    ],
+    "mutate/e2e/patchStrategicMerge-global-addifnotpresent": [
+      0,
+      1,
+      31
+    ],
+    "mutate/e2e/patchesJson6902-replace": [
+      0,
+      1,
+      31
+    ],
+    "mutate/e2e/patchesjson6902-simple": [
+      0,
+      1,
+      31
+    ],
+    "mutate/e2e/simple-conditional": [
+      0,
+      1,
+      31
+    ],
+    "mutate/e2e/variables-in-keys": [
+      0,
+      1,
+      31
+    ],
+    "mutate/policy/cornercases/foreach-remove-elements": [
+      0,
+      0,
+      31
+    ],
+    "mutate/policy/standard/existing/validation/auth-check": [
+      0,
+      0,
+      31
+    ],
+    "mutate/refactor/foreach/add-and-remove": [
+      0,
+      0,
+      31
+    ],
+    "mutate/refactor/foreach/remove-and-add": [
+      0,
+      0,
+      31
+    ],
+    "mutate/refactor/foreach/remove-multiple-elements-in-ascending-order": [
+      0,
+      0,
+      31
+    ],
+    "mutate/refactor/foreach/remove-multiple-elements-in-descending-order": [
+      0,
+      0,
+      31
+    ],
+    "mutate/refactor/k10-minimum-retention": [
+      0,
+      0,
+      31
+    ],
+    "mutate/refactor/nested-foreach/remove-all-env-vars": [
+      0,
+      0,
+      31
+    ],
+    "mutate/refactor/simple/remove-multiple-elements-in-ascending-order": [
+      0,
+      0,
+      31
+    ],
+    "mutate/refactor/simple/remove-multiple-elements-in-descending-order": [
+      0,
+      0,
+      31
+    ],
+    "mutating-admission-policy-reports/background/mutating-admission-policy-exclude": [
+      0,
+      0,
+      0
+    ],
+    "mutating-admission-policy-reports/background/with-binding-fail": [
+      0,
+      0,
+      0
+    ],
+    "mutating-admission-policy-reports/background/with-binding-pass": [
+      0,
+      0,
+      0
+    ],
+    "mutating-policies/admission/applyconfiguration": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/admission/jsonpatch": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/admission/multiple-policies-chaining": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/apply-v1": [
+      0,
+      5,
+      6
+    ],
+    "mutating-policies/autogen/polex": [
+      0,
+      1,
+      6
+    ],
+    "mutating-policies/context/globalcontextentry": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/context/image": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/context/resource/get": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/context/resource/match-conditions": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/context/userinfo/admission": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/exceptions/exclude-images": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/exceptions/regular": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/existing/different-trigger-target": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/existing/expression/get": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/existing/expression/list": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/existing/same-trigger-target": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/gzip": [
+      0,
+      5,
+      6
+    ],
+    "mutating-policies/matchconditions/cel-libs": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/reporting/admission": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/reporting/events-violation": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/reporting/existing-admission-flow": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/reporting/standard-background-policy-creation": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/reporting/with-exception-pass-result": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/reporting/with-exception-skip-result": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/reporting/with-exceptions": [
+      0,
+      0,
+      6
+    ],
+    "mutating-policies/request-object": [
+      0,
+      5,
+      6
+    ],
+    "namespaced-generating-policies/data/cross-namespace-denied": [
+      0,
+      0,
+      0
+    ],
+    "namespaced-generating-policies/data/generate-cm": [
+      0,
+      0,
+      0
+    ],
+    "namespaced-image-validating-policies/autogen/should-autogen": [
+      0,
+      0,
+      0
+    ],
+    "namespaced-image-validating-policies/context/image-data": [
+      0,
+      0,
+      0
+    ],
+    "namespaced-mutating-policies/admission/jsonpatch": [
+      0,
+      0,
+      0
+    ],
+    "namespaced-validating-policies/context/image-data": [
+      0,
+      0,
+      1
+    ],
+    "namespaced-validating-policies/match-conditions/failure-policy/default": [
+      0,
+      0,
+      1
+    ],
+    "namespaced-validating-policies/validation-actions/audit": [
+      0,
+      1,
+      1
+    ],
+    "namespaced-validating-policies/validation-rules/accept": [
+      0,
+      0,
+      1
+    ],
+    "namespaced-validating-policies/validation-rules/reject": [
+      0,
+      0,
+      1
+    ],
+    "policy-exceptions-disabled/validating-policies": [
+      0,
+      0,
+      0
+    ],
+    "policy-validation/cluster-policy/admission-disabled": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/all-disabled": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/assert": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/background-variables-update": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/cel-expressions": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/cel-preconditions": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/deprecated-operations": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/invalid-pod-security-exceptions": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/invalid-pod-security-rule": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/invalid-subject-kind": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/invalid-timeout": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/invalid-timeout-deprecated": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/policy-exceptions-disabled": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/schema-validation-crd": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/success": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/cluster-policy/target-context": [
+      0,
+      0,
+      1
+    ],
+    "policy-validation/policy/admission-disabled": [
+      0,
+      1,
+      1
+    ],
+    "policy-validation/policy/all-disabled": [
+      0,
+      1,
+      1
+    ],
+    "policy-validation/policy/assert": [
+      0,
+      1,
+      1
+    ],
+    "policy-validation/policy/invalid-timeout": [
+      0,
+      1,
+      1
+    ],
+    "rangeoperators/standard": [
+      0,
+      0,
+      0
+    ],
+    "rbac/aggregate-to-admin": [
+      0,
+      0,
+      0
+    ],
+    "rbac/mutate-policy-with-clusterrole": [
+      0,
+      0,
+      0
+    ],
+    "reports/admission/exception": [
+      0,
+      2,
+      2
+    ],
+    "reports/admission/mutation": [
+      0,
+      2,
+      2
+    ],
+    "reports/admission/namespaceselector": [
+      0,
+      2,
+      2
+    ],
+    "reports/admission/namespaceselector-assert": [
+      0,
+      2,
+      2
+    ],
+    "reports/admission/test-report-admission-mode": [
+      0,
+      2,
+      2
+    ],
+    "reports/admission/test-report-audit-warn": [
+      0,
+      2,
+      2
+    ],
+    "reports/admission/test-report-properties": [
+      0,
+      2,
+      2
+    ],
+    "reports/admission/update": [
+      0,
+      2,
+      2
+    ],
+    "reports/admission/update-deployment": [
+      0,
+      2,
+      2
+    ],
+    "reports/background/exception": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/exception-assert": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/exception-with-conditions": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/exception-with-podsecurity": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/generate": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/multiple-exceptions-with-pod-security": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/mutate-existing": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/report-deletion": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/test-report-background-mode": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/test-reporting-exclusion": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/two-rules-with-different-modes": [
+      0,
+      0,
+      2
+    ],
+    "reports/background/validating-admission-policy-exclude": [
+      0,
+      0,
+      2
+    ],
+    "validate/anchors/conditional": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/best-practices/disallow-latest-tag": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/apply-on-deletion": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/apply-on-deletion-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/cel-messages-upon-resource-failure": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/cel-messages-upon-resource-failure-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/check-message-upon-resource-failure": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/check-message-upon-resource-failure-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/different-configuration-for-actions": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/external-metrics": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/external-metrics-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/invalid-jmespath-variable-substitution-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/psa-run-as-non-root": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/schema-validation-for-mutateExisting": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/schema-validation-for-mutateExisting-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/two-rules-with-different-action": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/validate-pattern-should-fail": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/validate-pattern-should-fail-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/validate-pattern-should-pass": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/validate-pattern-should-pass-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/validate-pattern-should-skip": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/validate-pattern-should-skip-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/variable-substitution-failure-messages": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/cornercases/variable-substitution-failure-messages-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/apicalls-deprecated/lazyload": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/apicalls-deprecated/subjectaccessreview": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/apicalls/default": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/apicalls/lazyload": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/apicalls/subjectaccessreview": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit-deprecated/background-match-clusterRoles": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit-deprecated/background-match-roles": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit-deprecated/background-vars-roles": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit-deprecated/background-vars-serviceAccountName": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit-deprecated/background-vars-userInfo": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit-deprecated/configmap-context-lookup": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit/background-match-clusterRoles": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit/background-match-roles": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit/background-vars-roles": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit/background-vars-serviceAccountName": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit/background-vars-userInfo": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/audit/configmap-context-lookup": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel-deprecated/authorizor-checks/with-permissions": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel-deprecated/cel-preconditions": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel-deprecated/cel-variables": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel-deprecated/check-statefulset-namespace": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel-deprecated/disallow-host-port": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel-deprecated/parameter-resources/clusterscoped": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel-deprecated/parameter-resources/namespaced/set-paramref-namespace": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel-deprecated/parameter-resources/namespaced/unset-paramref-namespace": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/authorizor-checks/with-permissions": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/cel-preconditions": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/cel-variables": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/check-statefulset-namespace": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/deny": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/disallow-host-port": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/parameter-resources/clusterscoped": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/parameter-resources/namespaced/set-paramref-namespace": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/parameter-resources/namespaced/unset-paramref-namespace": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/cel/subreource": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/debug-deprecated/with-pod": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/debug-deprecated/with-subresource": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/debug-deprecated/with-wildcard": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/debug/with-pod": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/debug/with-subresource": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/debug/with-wildcard": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/api-initiated-pod-eviction": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/block-pod-exec-requests": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/bypass-with-policy-exception": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/csr": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/enforce-validate-existing": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/failure-policy-ignore-anchor": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/ns-selector-with-wildcard-kind": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/operator-allnotin-01": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/operator-anyin-boolean": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/resource-apply-block": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce-deprecated/scaling-with-kubectl-scale": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/api-initiated-pod-eviction": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/block-pod-exec-requests": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/bypass-with-policy-exception": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/csr": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/enforce-validate-existing": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/enforce-validate-existing-allow-existing-violations": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/enforce-validate-existing-deny": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/enforce-validate-existing-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/enforce-validate-labeled-action-override": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/failure-policy-ignore-anchor": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/ns-selector-with-wildcard-kind": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/operator-allnotin-01": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/operator-anyin-boolean": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/resource-apply-block": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/scaling-with-kubectl-scale": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/enforce/validate-existing-with-precondition": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/exclude/exclude-namespace": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/exclude/exclude-namespace(deprecated)": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/gvk": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/gvk-deprecated": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/operations/only-update": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/operations/only-update(deprecated)": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/seccomp-latest-check-no-exclusion": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-deletion-request": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-host-ports": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-hostpath-volume": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-hostprocesses": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-privilege-escalation": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-privileged-containers": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-restricted-capabilities": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-restricted-seccomp": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-running-as-nonroot": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-running-as-nonroot-user": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-seccomp": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-selinux": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-sysctls": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa-deprecated/test-exclusion-volume-types": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/seccomp-latest-check-no-exclusion": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-deletion-request": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-capabilities": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-host-namespaces": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-host-ports": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-hostpath-volume": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-hostprocesses": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-privileged-containers": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-restricted-capabilities": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-restricted-seccomp": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-running-as-nonroot": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-running-as-nonroot-user": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-seccomp": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-selinux": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-sysctls": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/psa/test-exclusion-volume-types": [
+      0,
+      1,
+      13
+    ],
+    "validate/clusterpolicy/standard/subresource-deprecated": [
+      0,
+      2,
+      13
+    ],
+    "validate/clusterpolicy/standard/variables/lazyload/conditions": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/variables/lazyload/conditions-deprecated": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/wildcard/block-verifyimage": [
+      0,
+      0,
+      13
+    ],
+    "validate/clusterpolicy/standard/wildcard/block-verifyimage-deprecated": [
+      0,
+      0,
+      13
+    ],
+    "validate/e2e/adding-key-to-config-map": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/adding-key-to-config-map-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/global-anchor-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/lowercase-kind-crd": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/lowercase-kind-crd-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/old-object-exists": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/old-object-exists-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/x509-decode": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/x509-decode-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/yaml-signing": [
+      0,
+      1,
+      13
+    ],
+    "validate/e2e/yaml-signing-deprecated": [
+      0,
+      1,
+      13
+    ],
+    "validating-admission-policy-reports/background/validating-admission-policy-fail": [
+      0,
+      1,
+      1
+    ],
+    "validating-admission-policy-reports/background/validating-admission-policy-pass": [
+      0,
+      1,
+      1
+    ],
+    "validating-admission-policy-reports/background/with-validating-admission-policy-binding-fail": [
+      0,
+      1,
+      1
+    ],
+    "validating-admission-policy-reports/background/with-validating-admission-policy-binding-no-reports": [
+      0,
+      1,
+      1
+    ],
+    "validating-admission-policy-reports/background/with-validating-admission-policy-binding-pass": [
+      0,
+      1,
+      1
+    ],
+    "validating-admission-policy-reports/events": [
+      0,
+      0,
+      1
+    ],
+    "validating-policies/autogen/autogen-deployments-cronjobs": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/autogen/autogen-deployments-statefulsets": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/autogen/none": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/autogen/should-autogen": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/autogen/should-not-autogen": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/context/configmap": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/context/globalreference": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/context/globalreference-missing-graceful": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/context/imagereference": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/context/json": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/context/parse-sa": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/context/resource/get": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/context/resource/post": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/context/userinfo": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/exceptions/allow-specific-values": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/exceptions/autogen": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/exceptions/empty-policy-ref": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/exceptions/exclude-deployments": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/exceptions/exclude-images": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/exceptions/exclude-images-autogen": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/exceptions/exclude-images-multiple-cel": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/exceptions/regular": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/exceptions/wrong-exception": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/match-conditions/cel-libs": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/match-conditions/failure-policy/default": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/match-conditions/failure-policy/fail": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/match-conditions/failure-policy/ignore": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/report/admission": [
+      0,
+      2,
+      4
+    ],
+    "validating-policies/report/background/globalcontextentry": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/report/background/standard": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/report/with-exception": [
+      0,
+      2,
+      4
+    ],
+    "validating-policies/report/with-exception-skip-result": [
+      0,
+      2,
+      4
+    ],
+    "validating-policies/validation-actions/deny": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/validation-actions/none": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/validation-actions/warn": [
+      0,
+      1,
+      4
+    ],
+    "validating-policies/validation-checks/invalid-action": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/validation-checks/missing-match-constraints": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/validation-rules/accept": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/validation-rules/reject": [
+      0,
+      0,
+      4
+    ],
+    "validating-policies/validation-rules/with-match-conditions": [
+      0,
+      0,
+      4
+    ],
+    "verify-manifests/multi-signatures": [
+      0,
+      0,
+      0
+    ],
+    "verify-manifests/multi-signatures(deprecated)": [
+      0,
+      0,
+      0
+    ],
+    "verify-manifests/single-signature": [
+      0,
+      0,
+      0
+    ],
+    "verify-manifests/single-signature(deprecated)": [
+      0,
+      0,
+      0
+    ],
+    "webhook-configurations/cpol-match-conditions-block": [
+      0,
+      0,
+      0
+    ],
+    "webhook-configurations/cpol-match-conditions-pass": [
+      0,
+      0,
+      0
+    ],
+    "webhook-configurations/match-conditions-fail": [
+      0,
+      0,
+      0
+    ],
+    "webhook-configurations/match-conditions-standard": [
+      0,
+      0,
+      0
+    ],
+    "webhook-configurations/match-conditions-userinfo": [
+      0,
+      0,
+      0
+    ],
+    "webhook-configurations/webhook-registeration": [
+      0,
+      0,
+      0
+    ],
+    "webhooks/clusterpolicy": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/double-wildcard": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/dyn-op-mutate": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/dyn-op-mutate-multiple": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/dyn-op-validate-and-mutate": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/expected-webhooks": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/only-pod": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/pod-all-subresources": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/pod-exec-subresource": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/policy": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/policy-clusterpolicy-namespaced-clusterscoped-resources": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/policy-clusterpolicy-namespaced-resources": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/policy-clusterpolicy-same-resource": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/policy-clusterpolicy-wildcard-resource": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/policy-clusterscope-resource": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/policy-wildcard-resource": [
+      0,
+      6,
+      6
+    ],
+    "webhooks/scale": [
+      0,
+      6,
+      6
+    ]
+  },
+  "jobs": {
+    "policy-exceptions-disabled": [
+      0,
+      0,
+      0
+    ],
+    "validate-s0of8": [
+      0,
+      1,
+      13
+    ],
+    "image-validating-policies-s0of3": [
+      0,
+      0,
+      0
+    ],
+    "namespaced-mutating-policies": [
+      0,
+      0,
+      0
+    ],
+    "globalcontext": [
+      0,
+      0,
+      0
+    ],
+    "generating-policies-s1of6": [
+      0,
+      0,
+      8
+    ],
+    "namespaced-generating-policies-s1of3": [
+      0,
+      0,
+      0
+    ],
+    "generate-s5of12": [
+      0,
+      1,
+      14
+    ],
+    "validating-policies-s0of5": [
+      0,
+      1,
+      4
+    ],
+    "generate-s4of12": [
+      0,
+      6,
+      14
+    ],
+    "exceptions-s0of3": [
+      0,
+      0,
+      0
+    ],
+    "generating-policies-s0of6": [
+      0,
+      0,
+      8
+    ],
+    "exceptions-s1of3": [
+      0,
+      0,
+      0
+    ],
+    "validating-policies-s1of5": [
+      0,
+      1,
+      4
+    ],
+    "validate-s1of8": [
+      0,
+      1,
+      13
+    ],
+    "image-validating-policies-s1of3": [
+      0,
+      0,
+      0
+    ],
+    "force-failure-policy-ignore": [
+      0,
+      0,
+      0
+    ],
+    "validating-policies-s3of5": [
+      0,
+      2,
+      4
+    ],
+    "namespaced-generating-policies-s2of3": [
+      0,
+      0,
+      0
+    ],
+    "webhook-configurations": [
+      0,
+      0,
+      0
+    ],
+    "generating-policies-s2of6": [
+      0,
+      1,
+      8
+    ],
+    "filter": [
+      0,
+      0,
+      0
+    ],
+    "validate-s3of8": [
+      0,
+      1,
+      13
+    ],
+    "image-validating-policies-s2of3": [
+      0,
+      0,
+      0
+    ],
+    "validate-s2of8": [
+      0,
+      1,
+      13
+    ],
+    "generate-s8of12": [
+      0,
+      0,
+      14
+    ],
+    "generate-s9of12": [
+      0,
+      1,
+      14
+    ],
+    "events": [
+      0,
+      0,
+      0
+    ],
+    "validating-policies-s2of5": [
+      0,
+      0,
+      4
+    ],
+    "exceptions-s2of3": [
+      0,
+      0,
+      0
+    ],
+    "generating-policies-s3of6": [
+      0,
+      0,
+      8
+    ],
+    "webhooks": [
+      0,
+      6,
+      6
+    ],
+    "generate-s2of12": [
+      0,
+      1,
+      14
+    ],
+    "generate-s3of12": [
+      0,
+      0,
+      14
+    ],
+    "deferred": [
+      0,
+      0,
+      0
+    ],
+    "generate-s10of12": [
+      0,
+      2,
+      14
+    ],
+    "namespaced-validating-policies-s2of3": [
+      0,
+      0,
+      1
+    ],
+    "generate-s11of12": [
+      0,
+      2,
+      14
+    ],
+    "mutating-admission-policy-reports": [
+      0,
+      0,
+      0
+    ],
+    "mutating-policies-s1of3": [
+      0,
+      0,
+      6
+    ],
+    "reports-s1of3": [
+      0,
+      2,
+      2
+    ],
+    "namespaced-image-validating-policies": [
+      0,
+      0,
+      0
+    ],
+    "validate-s7of8": [
+      0,
+      2,
+      13
+    ],
+    "mutate-s1of3": [
+      0,
+      14,
+      31
+    ],
+    "mutating-policies-s0of3": [
+      0,
+      5,
+      6
+    ],
+    "reports-s0of3": [
+      0,
+      2,
+      2
+    ],
+    "rangeoperators": [
+      0,
+      0,
+      0
+    ],
+    "mutate-s0of3": [
+      0,
+      14,
+      31
+    ],
+    "generate-s6of12": [
+      0,
+      2,
+      14
+    ],
+    "generate-s7of12": [
+      0,
+      2,
+      14
+    ],
+    "validate-s6of8": [
+      0,
+      2,
+      13
+    ],
+    "autogen": [
+      0,
+      0,
+      0
+    ],
+    "background-only": [
+      0,
+      2,
+      2
+    ],
+    "reports-s2of3": [
+      0,
+      0,
+      2
+    ],
+    "assert": [
+      0,
+      0,
+      0
+    ],
+    "mutating-policies-s2of3": [
+      0,
+      5,
+      6
+    ],
+    "validating-admission-policy-reports": [
+      0,
+      1,
+      1
+    ],
+    "mutate-s2of3": [
+      0,
+      1,
+      31
+    ],
+    "validate-s4of8": [
+      0,
+      1,
+      13
+    ],
+    "generate-s1of12": [
+      0,
+      1,
+      14
+    ],
+    "generate-s0of12": [
+      0,
+      0,
+      14
+    ],
+    "generate-validating-admission-policy": [
+      0,
+      0,
+      1
+    ],
+    "generating-policies-s5of6": [
+      0,
+      2,
+      8
+    ],
+    "validating-policies-s4of5": [
+      0,
+      0,
+      4
+    ],
+    "verify-manifests": [
+      0,
+      0,
+      0
+    ],
+    "generate-mutating-admission-policy": [
+      0,
+      0,
+      0
+    ],
+    "namespaced-validating-policies-s1of3": [
+      0,
+      1,
+      1
+    ],
+    "generating-policies-s4of6": [
+      0,
+      3,
+      8
+    ],
+    "namespaced-validating-policies-s0of3": [
+      0,
+      0,
+      1
+    ],
+    "rbac-standard": [
+      0,
+      0,
+      0
+    ],
+    "validate-s5of8": [
+      0,
+      2,
+      13
+    ],
+    "policy-validation": [
+      0,
+      1,
+      1
+    ]
+  },
+  "workers": {
+    "w4": [
+      0,
+      14,
+      31
+    ],
+    "w3": [
+      0,
+      14,
+      31
+    ],
+    "w2": [
+      0,
+      14,
+      31
+    ],
+    "w5": [
+      0,
+      14,
+      31
+    ],
+    "w0": [
+      0,
+      0,
+      0
+    ],
+    "w7": [
+      0,
+      14,
+      31
+    ],
+    "w6": [
+      0,
+      14,
+      31
+    ],
+    "w1": [
+      0,
+      14,
+      31
+    ]
+  },
+  "baselines": {
+    "B1-standard": [
+      0,
+      14,
+      31
+    ],
+    "B2-default": [
+      0,
+      0,
+      0
+    ],
+    "B3-force-failure-policy-ignore": [
+      0,
+      0,
+      0
+    ],
+    "B5-map-reports": [
+      0,
+      0,
+      0
+    ]
+  }
+}

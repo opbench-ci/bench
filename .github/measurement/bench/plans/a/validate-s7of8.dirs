@@ -1,0 +1,17 @@
+validate/clusterpolicy/standard/subresource-deprecated
+validate/clusterpolicy/standard/psa/test-exclusion-volume-types
+validate/e2e/adding-key-to-config-map
+validate/e2e/adding-key-to-config-map-deprecated
+validate/e2e/global-anchor-deprecated
+validate/e2e/lowercase-kind-crd
+validate/e2e/lowercase-kind-crd-deprecated
+validate/e2e/old-object-exists
+validate/e2e/old-object-exists-deprecated
+validate/e2e/x509-decode
+validate/e2e/x509-decode-deprecated
+validate/e2e/yaml-signing
+validate/e2e/yaml-signing-deprecated
+validate/clusterpolicy/standard/variables/lazyload/conditions
+validate/clusterpolicy/standard/variables/lazyload/conditions-deprecated
+validate/clusterpolicy/standard/wildcard/block-verifyimage
+validate/clusterpolicy/standard/wildcard/block-verifyimage-deprecated

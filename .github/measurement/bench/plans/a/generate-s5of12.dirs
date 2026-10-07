@@ -1,0 +1,14 @@
+generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-modify-downstream
+generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-modify-rule
+generate/clusterpolicy/standard/data/sync-deprecated/cpol-data-sync-orphan-downstream-delete-policy
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-create
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-downstream
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-one-trigger
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-policy
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-rule
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-delete-trigger
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-downstream
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-policy
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-modify-rule
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-mutate-and-generate
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-no-existing-update-trigger-no-precondition

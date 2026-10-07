@@ -1,0 +1,15 @@
+generate/clusterpolicy/standard/clone/nosync/cpol-clone-nosync-create
+generate/clusterpolicy/cornercases/cpol-clone-sync-single-trigger-source-multiple-targets
+generate/clusterpolicy/cornercases/cpol-data-create-on-trigger-deletion
+generate/clusterpolicy/cornercases/cpol-data-sync-create-upon-generated-resource
+generate/clusterpolicy/cornercases/cpol-data-sync-no-creation-upon-generated-resource
+generate/clusterpolicy/cornercases/cpol-data-sync-remove-list-element
+generate/clusterpolicy/cornercases/cpol-data-sync-to-nosync-delete-rule
+generate/clusterpolicy/cornercases/cpol-data-sync-to-nosync-delete-rule-deprecated
+generate/clusterpolicy/cornercases/cpol-data-trigger-not-present
+generate/clusterpolicy/cornercases/data-role-and-rolebinding
+generate/clusterpolicy/cornercases/generate-event-upon-edit
+generate/clusterpolicy/cornercases/pod-restart-on-cm-update
+generate/clusterpolicy/cornercases/pod-restart-on-cm-update-deprecated
+generate/clusterpolicy/cornercases/trigger-resource-name-exceeds-63-characters
+generate/clusterpolicy/standard/clone/multiple/sync/basic-create

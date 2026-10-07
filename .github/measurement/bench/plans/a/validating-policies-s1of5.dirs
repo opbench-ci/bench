@@ -1,0 +1,8 @@
+validating-policies/context/imagereference
+validating-policies/context/json
+validating-policies/context/parse-sa
+validating-policies/context/userinfo
+validating-policies/context/resource/get
+validating-policies/context/resource/post
+validating-policies/exceptions/allow-specific-values
+validating-policies/exceptions/autogen

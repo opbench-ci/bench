@@ -1,0 +1,7 @@
+reports/admission/update
+reports/admission/update-deployment
+reports/background/exception
+reports/background/exception-assert
+reports/background/exception-with-conditions
+reports/background/exception-with-podsecurity
+reports/background/generate

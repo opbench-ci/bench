@@ -1,0 +1,8 @@
+validating-policies/report/admission
+validating-policies/report/with-exception
+validating-policies/report/with-exception-skip-result
+validating-policies/validation-actions/deny
+validating-policies/validation-actions/none
+validating-policies/validation-actions/warn
+validating-policies/report/background/globalcontextentry
+validating-policies/report/background/standard
