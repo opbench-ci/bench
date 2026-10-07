@@ -1,0 +1,7 @@
+reports/background/multiple-exceptions-with-pod-security
+reports/background/mutate-existing
+reports/background/report-deletion
+reports/background/test-report-background-mode
+reports/background/test-reporting-exclusion
+reports/background/two-rules-with-different-modes
+reports/background/validating-admission-policy-exclude

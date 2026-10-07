@@ -1,0 +1,7 @@
+generating-policies/foreach/data/data-generate-nps
+generating-policies/exceptions/data-generate-cm
+generating-policies/existing/basic-generate-clone
+generating-policies/existing/basic-generate-data
+generating-policies/existing/basic-generate-with-name-matching
+generating-policies/existing/basic-generate-with-ns-selector
+generating-policies/existing/basic-generate-with-obj-selector

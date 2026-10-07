@@ -1,0 +1,235 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: "ci-bench-b: drop-in, same shard assignment"
+
+# Arm B: the same 73 job/shard rows and directory selection as ci-bench-a.yaml,
+# but the cluster comes from the guest substrate instead of kind: each job
+# downloads the public bundle, restores/builds the job's baseline
+# (p82-sweep -hold -kubeconfig-out), then runs chainsaw directly against that
+# job's explicit included-directory list from the frozen manifest (the same
+# .github/measurement/bench/plans/a/<job>.dirs files ci-bench-a.yaml uses) —
+# not a shard-index/quarantine restriction, which can silently move a test
+# across a shard boundary. Measures substrate savings alone, same job graph as
+# A. D4: kubectl-evict installed once per worker, pinned. D5: webhook Service
+# to URL rewrite happens inside the guest kubelet, invisible here. D7:
+# hugetlbfs-backed restores (opt-in HARNESS_HUGETLBFS_DIR).
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [passing/b-cold]
+  workflow_dispatch: {}
+
+concurrency:
+  group: ci-bench-hosted
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    name: drop-in ${{ matrix.id }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {id: mutate-s0of3, tests_path: mutate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: mutate-s1of3, tests_path: mutate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: generate-s4of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: webhooks, tests_path: webhooks, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: mutating-policies-s0of3, tests_path: mutating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: mutating-policies-s2of3, tests_path: mutating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: generating-policies-s4of6, tests_path: generating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s10of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s11of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s6of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s7of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: validate-s5of8, tests_path: validate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validate-s6of8, tests_path: validate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validate-s7of8, tests_path: validate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: generating-policies-s5of6, tests_path: generating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: validating-policies-s3of5, tests_path: validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: background-only, tests_path: background-only, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: reports-s0of3, tests_path: reports, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: reports-s1of3, tests_path: reports, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: mutate-s2of3, tests_path: mutate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: generate-s1of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s2of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s5of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s9of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: validate-s0of8, tests_path: validate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validate-s1of8, tests_path: validate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validate-s2of8, tests_path: validate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validate-s3of8, tests_path: validate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validate-s4of8, tests_path: validate, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: generating-policies-s2of6, tests_path: generating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: validating-policies-s0of5, tests_path: validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validating-policies-s1of5, tests_path: validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: namespaced-validating-policies-s1of3, tests_path: namespaced-validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: policy-validation, tests_path: policy-validation, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validating-admission-policy-reports, tests_path: validating-admission-policy-reports, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: generate-s0of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s3of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generate-s8of12, tests_path: generate, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generating-policies-s0of6, tests_path: generating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generating-policies-s1of6, tests_path: generating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: generating-policies-s3of6, tests_path: generating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'true'}
+          - {id: mutating-policies-s1of3, tests_path: mutating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validating-policies-s2of5, tests_path: validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: validating-policies-s4of5, tests_path: validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: reports-s2of3, tests_path: reports, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: generate-validating-admission-policy, tests_path: generate-validating-admission-policy, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: namespaced-validating-policies-s0of3, tests_path: namespaced-validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: namespaced-validating-policies-s2of3, tests_path: namespaced-validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: assert, tests_path: assert, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: autogen, tests_path: autogen, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: deferred, tests_path: deferred, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: events, tests_path: events, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: exceptions-s0of3, tests_path: exceptions, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: exceptions-s1of3, tests_path: exceptions, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: exceptions-s2of3, tests_path: exceptions, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: filter, tests_path: filter, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: force-failure-policy-ignore, tests_path: force-failure-policy-ignore, kyverno_configs: 'standard,force-failure-policy-ignore', install_kubectl_evict: 'false'}
+          - {id: globalcontext, tests_path: globalcontext, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: image-validating-policies-s0of3, tests_path: image-validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: image-validating-policies-s1of3, tests_path: image-validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: image-validating-policies-s2of3, tests_path: image-validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: mutating-admission-policy-reports, tests_path: mutating-admission-policy-reports, kyverno_configs: 'standard,mutating-admission-policy-reports', install_kubectl_evict: 'false'}
+          - {id: namespaced-generating-policies-s1of3, tests_path: namespaced-generating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: namespaced-generating-policies-s2of3, tests_path: namespaced-generating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: namespaced-image-validating-policies, tests_path: namespaced-image-validating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: namespaced-mutating-policies, tests_path: namespaced-mutating-policies, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: policy-exceptions-disabled, tests_path: policy-exceptions-disabled, kyverno_configs: 'default', install_kubectl_evict: 'false'}
+          - {id: rangeoperators, tests_path: rangeoperators, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: rbac-standard, tests_path: rbac, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: verify-manifests, tests_path: verify-manifests, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+          - {id: webhook-configurations, tests_path: webhook-configurations, kyverno_configs: 'standard', install_kubectl_evict: 'false'}
+    env:
+      BUNDLE_URL: ${{ vars.BUNDLE_URL }}
+      BUNDLE_SHA256: ${{ vars.BUNDLE_SHA256 }}
+      BUNDLE: ${{ github.workspace }}/bundle
+      EVIDENCE: ${{ github.workspace }}/evidence
+      BENCH_JOB: ${{ matrix.id }}
+      HARNESS_ARTIFACT_DIR: /tmp/gh
+      HARNESS_SNAPSHOT_CACHE: /tmp/gh-snapshots
+      HARNESS_HUGETLBFS_DIR: /mnt/huge
+    steps:
+      - name: Mark job start
+        run: echo "JOB_T0=$(date +%s%N)" >> "$GITHUB_ENV"
+      - name: Checkout (this tree carries the pinned upstream test sources)
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # The helpers' screen refuses any checkout whose HEAD is not the pin, and
+      # this tree's HEAD is a parentless benchmark commit: tests, configs and
+      # the screen all read this untouched upstream checkout instead.
+      - name: Checkout exact upstream test sources
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: kyverno/kyverno
+          ref: 945ac9ce8546ea6cd51370f24b615148c577da5e
+          path: upstream
+      - name: Enable KVM
+        run: |
+          sudo chmod 0666 /dev/kvm
+          test -r /dev/kvm && test -w /dev/kvm
+          grep -Eq '(vmx|svm)' /proc/cpuinfo
+      - name: Reserve 2M pages and mount hugetlbfs (D7)
+        run: |
+          echo 6200 | sudo tee /proc/sys/vm/nr_hugepages  # 2M pages, as arms C/C4; 3800 (base + baseline + one clone by arithmetic) hit ENOMEM staging the baseline
+          sudo mkdir -p /mnt/huge && sudo mount -t hugetlbfs -o mode=1777,pagesize=2M none /mnt/huge
+          grep -i hugepages_ /proc/meminfo
+      - name: Start evidence
+        run: |
+          mkdir -p "$EVIDENCE"
+          echo "{\"phase\":\"job_steps_start\",\"unix_ns\":$JOB_T0}" >> "$EVIDENCE/phases.jsonl"
+      - uses: ./.github/actions/measurement/capture-runner
+      - name: Install tools (upstream actions)
+        uses: ./.github/actions/tools/install
+        with:
+          helm: true
+          cosign: true
+          yq: true
+      - name: Install chainsaw v0.2.15
+        uses: ./.github/actions/tools/chainsaw
+      - name: Download and verify public binary bundle
+        run: |
+          set -euo pipefail
+          .github/measurement/bench/phase.sh bundle_download bash -c '
+            curl --fail --location --retry 3 --silent --show-error "$BUNDLE_URL" -o "$RUNNER_TEMP/bundle.tar.gz" &&
+            echo "$BUNDLE_SHA256  $RUNNER_TEMP/bundle.tar.gz" | sha256sum -c - &&
+            mkdir -p "$BUNDLE" && tar xzf "$RUNNER_TEMP/bundle.tar.gz" -C "$BUNDLE" &&
+            (cd "$BUNDLE" && sha256sum --quiet -c SHA256SUMS)'
+          cp "$RUNNER_TEMP/runner-profile.json" "$BUNDLE/provenance.json" "$EVIDENCE/" 2>/dev/null || true
+      - name: Install kubectl-evict (D4, once per worker, pinned)
+        if: matrix.install_kubectl_evict == 'true'
+        run: |
+          set -euo pipefail
+          .github/measurement/bench/phase.sh evict_install bash -c 'GOBIN="$HOME/go/bin" go install github.com/ueokande/kubectl-evict@latest'
+          echo "$HOME/go/bin" >> "$GITHUB_PATH"
+      # Warm only: restore this job's baseline from the harness snapshot cache,
+      # keyed on the bundle content and the job's kyverno-configs (baseline).
+      # The harness's own cache key additionally folds in host CPU identity
+      # (hostRestoreID), so a harness-level miss on an actions/cache hit means
+      # a foreign-CPU entry, not a broken cache. Cold runs never touch
+      # actions/cache.
+      - name: Restore harness snapshot cache (warm)
+        if: endsWith(github.ref_name, '-warm')
+        id: snap-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: /tmp/gh-snapshots
+          key: snap-${{ env.BUNDLE_SHA256 }}-${{ matrix.id }}
+      - name: Restore this job's baseline and hold a ready cluster
+        working-directory: bundle
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/gh-snapshots
+          mkdir -p /tmp/gh && ln -sf "$BUNDLE/artifacts/vmlinux" "$BUNDLE/artifacts/initramfs.cpio.gz" /tmp/gh/  # the bundle ships its own guest; the pin is unreachable by design
+          export HARNESS_ASSET_CACHE="$BUNDLE/cache/assets" HARNESS_FIRECRACKER="$BUNDLE/bin/firecracker" PATH="$BUNDLE/bin:$PATH"
+          export HARNESS_GUEST_BUILD_FINGERPRINT="$(cat guest-build-fingerprint)"
+          export HARNESS_TIMING_JSONL="$EVIDENCE/harness-phases.jsonl"
+          kubeconfig="$RUNNER_TEMP/kubeconfig"
+          provision_start=$(date +%s%N)
+          nohup ./bin/p82-sweep -kyverno "$GITHUB_WORKSPACE/upstream" -sut "$BUNDLE/artifacts/sut/kyverno-admission" \
+            -install-ns kyverno -controllers all -upstream-ci -upstream-configs '${{ matrix.kyverno_configs }}' \
+            -hold -kubeconfig-out "$kubeconfig" > "$EVIDENCE/provision.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/sweep.pid"
+          deadline=$((SECONDS + 600))
+          until [ -f "$kubeconfig" ]; do
+            kill -0 "$(cat "$RUNNER_TEMP/sweep.pid")" 2>/dev/null || { echo "p82-sweep exited early"; cat "$EVIDENCE/provision.log"; exit 1; }
+            [ $SECONDS -lt $deadline ] || { echo "timed out waiting for kubeconfig"; exit 1; }
+            sleep 0.2
+          done
+          echo "KUBECONFIG=$kubeconfig" >> "$GITHUB_ENV"
+          printf '{"phase":"provision","start_unix_ns":%s,"end_unix_ns":%s,"wall_ms":%s,"exit":0,"job":"%s"}\n' \
+            "$provision_start" "$(date +%s%N)" $(( ($(date +%s%N) - provision_start) / 1000000 )) "$BENCH_JOB" >> "$EVIDENCE/phases.jsonl"
+      - name: Test with Chainsaw (explicit directory list, fail-fast off)
+        run: |
+          set -euo pipefail
+          cd ./upstream/test/conformance/chainsaw/${{ matrix.tests_path }}
+          mapfile -t dirs < <(sed "s#^${{ matrix.tests_path }}/##" "$GITHUB_WORKSPACE/.github/measurement/bench/plans/a/${{ matrix.id }}.dirs")
+          "$GITHUB_WORKSPACE/.github/measurement/bench/phase.sh" chainsaw chainsaw test \
+            --config .chainsaw.yaml \
+            --fail-fast=false \
+            --report-format JSON --report-path "$EVIDENCE" --report-name chainsaw-report \
+            "${dirs[@]}"
+      - name: Dispose runtime state
+        if: always()
+        run: |
+          kill $(cat "$RUNNER_TEMP/sweep.pid" 2>/dev/null) 2>/dev/null || true
+          sleep 1
+          pkill -x firecracker 2>/dev/null || true
+          rm -rf /tmp/gh
+      - name: Collect evidence
+        if: always()
+        env:
+          BENCH_TESTS_PATH: ${{ matrix.tests_path }}
+        run: |
+          echo "{\"phase\":\"job_steps_end\",\"unix_ns\":$(date +%s%N)}" >> "$EVIDENCE/phases.jsonl"
+          "$GITHUB_WORKSPACE/.github/measurement/bench/emit-evidence.sh"
+      - name: Emit cache evidence (warm)
+        if: always() && endsWith(github.ref_name, '-warm')
+        run: |
+          harness_line=$(grep -E 'snapshot cache (hit|miss)' "$EVIDENCE/provision.log" | tail -1 || true)
+          harness_hit="null"
+          case "$harness_line" in *"cache hit"*) harness_hit=true ;; *"cache miss"*) harness_hit=false ;; esac
+          echo "BENCH-EVIDENCE cache {\"arm\":\"b\",\"key\":\"snap-${BUNDLE_SHA256}-${BENCH_JOB}\",\"hit\":${{ steps.snap-cache.outputs.cache-hit == 'true' }},\"harness_hit\":$harness_hit,\"harness_line\":\"$harness_line\",\"reason\":\"actions/cache keyed on BUNDLE_SHA256+job; harness key additionally folds in host CPU identity, so harness_hit=false despite hit=true means a foreign-CPU entry\"}"

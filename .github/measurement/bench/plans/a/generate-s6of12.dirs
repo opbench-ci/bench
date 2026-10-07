@@ -1,0 +1,15 @@
+generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-delete-source
+generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-update-source
+generate/foreach/clusterpolicy/clone/sync/cpol-clone-list-sync-update-target
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-orphan-downstream-delete-policy
+generate/clusterpolicy/standard/data/sync/cpol-data-sync-update-trigger-no-match
+generate/clusterpolicy/standard/existing-deprecated/existing-basic-add-rule-data
+generate/clusterpolicy/standard/existing-deprecated/existing-basic-create-policy-data
+generate/clusterpolicy/standard/existing-deprecated/existing-basic-create-policy-preconditions-data
+generate/clusterpolicy/standard/existing/different-configurations-for-generate-existing
+generate/clusterpolicy/standard/existing/different-generate-existing-values
+generate/clusterpolicy/standard/existing/different-generate-existing-values-reorder
+generate/clusterpolicy/standard/existing/existing-basic-add-rule-data
+generate/clusterpolicy/standard/existing/existing-basic-create-policy-data
+generate/clusterpolicy/standard/existing/existing-basic-create-policy-preconditions-data
+generate/clusterpolicy/standard/existing/existing-with-wildcard-name-matching

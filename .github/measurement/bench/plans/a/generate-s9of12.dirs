@@ -1,0 +1,15 @@
+generate/policy/standard/data/sync/pol-data-sync-create-policy-invalid
+generate/policy/standard/data/sync/pol-data-sync-create-policy-valid
+generate/policy/standard/data/sync/pol-data-sync-delete-downstream
+generate/policy/standard/data/sync/pol-data-sync-delete-policy
+generate/policy/standard/clone/sync/pol-clone-sync-modify-source
+generate/policy/standard/clone/sync/pol-clone-sync-update-trigger-no-match
+generate/policy/standard/data/nosync/pol-data-nosync-create-policy-invalid
+generate/policy/standard/data/nosync/pol-data-nosync-delete-downstream
+generate/policy/standard/data/nosync/pol-data-nosync-delete-policy
+generate/policy/standard/data/nosync/pol-data-nosync-delete-rule
+generate/policy/standard/data/nosync/pol-data-nosync-delete-rule-deprecated
+generate/policy/standard/data/nosync/pol-data-nosync-delete-trigger
+generate/policy/standard/data/nosync/pol-data-nosync-modify-downstream
+generate/policy/standard/data/nosync/pol-data-nosync-modify-rule
+generate/policy/standard/data/nosync/pol-data-nosync-update-trigger-no-match
